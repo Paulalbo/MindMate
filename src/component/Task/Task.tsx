@@ -5,6 +5,9 @@ interface TaskProps {
   jsonData: any; // Use a specific type if you have one for your JSON data
 }
 
+{
+  /* Update task with description, title styling, status adjustments */
+}
 const Task: React.FC<TaskProps> = ({ jsonData }) => {
   const [tasks, setTasks] = useState(jsonData.tasks);
 
