@@ -25,6 +25,7 @@ function App() {
     <>
       <Header />
       <DropZone setJsonData={setJsonData} />
+      {/* Add form to add task, name, ... if data is not exisiting, first time user */}
       {jsonData && (
         <>
           <TaskList jsonData={jsonData} />
