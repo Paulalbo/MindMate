@@ -5,20 +5,25 @@ interface TaskProps {
   jsonData: any; // Use a specific type if you have one for your JSON data
 }
 
-{
-  /* Update task with description, title styling, status adjustments */
-}
 const Task: React.FC<TaskProps> = ({ jsonData }) => {
   const [tasks, setTasks] = useState(jsonData.tasks);
 
   const handleStatusChange = (
     taskId: string,
     newEventValue: string,
-    newStatusValue: boolean
+    newEventDescription: string,
+    newStatusValue: boolean,
+    newDueDate: string
   ) => {
     const updatedTasks = tasks.map((task) =>
       task.id === taskId
-        ? { ...task, event: newEventValue, finished: newStatusValue }
+        ? {
+            ...task,
+            event: newEventValue,
+            description: newEventDescription,
+            finished: newStatusValue,
+            duedate: newDueDate,
+          }
         : task
     );
     setTasks(updatedTasks);
@@ -45,24 +50,65 @@ const Task: React.FC<TaskProps> = ({ jsonData }) => {
               type="text"
               value={item.event}
               onChange={(e) =>
-                handleStatusChange(item.id, e.target.value, item.finished)
+                handleStatusChange(
+                  item.id,
+                  e.target.value,
+                  item.description,
+                  item.finished,
+                  item.duedate
+                )
               }
             />
           </p>
-          <p className="tasklist__status">
-            <select
-              value={item.finished ? "Done" : "In Progress"}
+          <div className="tasklist__details">
+            <p className="tasklist__duedate">
+              <label>Due date: </label>
+              <input
+                type="date"
+                value={item.duedate}
+                onChange={(e) =>
+                  handleStatusChange(
+                    item.id,
+                    item.event,
+                    item.description,
+                    item.finished,
+                    e.target.value
+                  )
+                }
+              />
+            </p>
+            <p className="tasklist__status">
+              <label>Status: </label>
+              <select
+                value={item.finished ? "Done" : "In Progress"}
+                onChange={(e) =>
+                  handleStatusChange(
+                    item.id,
+                    item.event,
+                    item.description,
+                    e.target.value === "Done",
+                    item.duedate
+                  )
+                }
+              >
+                <option value="In Progress">In Progress</option>
+                <option value="Done">Done</option>
+              </select>
+            </p>
+          </div>
+          <p className="tasklist__description">
+            <textarea
+              value={item.description}
               onChange={(e) =>
                 handleStatusChange(
                   item.id,
                   item.event,
-                  e.target.value === "Done"
+                  e.target.value,
+                  item.finished,
+                  item.duedate
                 )
               }
-            >
-              <option value="In Progress">In Progress</option>
-              <option value="Done">Done</option>
-            </select>
+            ></textarea>
           </p>
         </div>
       ))}

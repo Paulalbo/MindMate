@@ -17,6 +17,8 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   width: calc(50% - 10px);
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
@@ -26,7 +28,7 @@
   padding: 5px 15px;
 }
 
-.tasklist__title {
+.tasklist__item > *, .tasklist__item > * textarea {
   width: 100%;
 }
 
@@ -41,6 +43,37 @@
 }
 
 .tasklist__status {
+  color: #000;
+}
+
+.tasklist__details {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.tasklist__details > * {
+  margin: 0;
+}
+
+.tasklist__details > * input, .tasklist__details > * select {
+  border-radius: 25px;
+  border: 1px solid black;
+  padding: 2px 5px;
+}
+
+.tasklist__details > * label {
+  color: #0000007a;
+  font-size: 15px;
+  margin-right: 10px;
+}
+
+.tasklist textarea {
+  border: none;
+  background: #fff;
+  padding: 5px;
   color: #000;
 }
 /*# sourceMappingURL=style.css.map */
