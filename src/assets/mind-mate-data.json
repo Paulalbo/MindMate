@@ -1,0 +1,35 @@
+{
+    "name": "User name",
+    "tasks": [
+      {
+        "id": "1",
+        "event": "task 1",
+        "finished": true
+      },
+      {
+        "id": "2",
+        "event": "task 2",
+        "finished": false
+      },
+      {
+        "id": "3",
+        "event": "task 3",
+        "finished": true
+      },
+      {
+        "id": "4",
+        "event": "task 4",
+        "finished": false
+      },
+      {
+        "id": "5",
+        "event": "task 5",
+        "finished": false
+      },
+      {
+        "id": "6",
+        "event": "task 6",
+        "finished": false
+      }
+    ]
+  }
