@@ -27,8 +27,17 @@
 }
 
 .tasklist__title {
+  width: 100%;
+}
+
+.tasklist__title input {
+  width: 100%;
   text-transform: uppercase;
   color: #000;
+  border: none;
+  border-bottom: 1px solid black;
+  background: transparent;
+  padding: 10px 5px;
 }
 
 .tasklist__status {
