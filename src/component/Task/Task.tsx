@@ -14,11 +14,11 @@ const Task: React.FC<TaskProps> = ({ jsonData }) => {
   const handleStatusChange = (
     taskId: string,
     newEventValue: string,
-    newFinishedValue: boolean
+    newStatusValue: boolean
   ) => {
     const updatedTasks = tasks.map((task) =>
       task.id === taskId
-        ? { ...task, event: newEventValue, finished: newFinishedValue }
+        ? { ...task, event: newEventValue, finished: newStatusValue }
         : task
     );
     setTasks(updatedTasks);
@@ -50,14 +50,19 @@ const Task: React.FC<TaskProps> = ({ jsonData }) => {
             />
           </p>
           <p className="tasklist__status">
-            <input
-              type="checkbox"
-              checked={item.finished}
+            <select
+              value={item.finished ? "Done" : "In Progress"}
               onChange={(e) =>
-                handleStatusChange(item.id, item.event, e.target.checked)
+                handleStatusChange(
+                  item.id,
+                  item.event,
+                  e.target.value === "Done"
+                )
               }
-            />
-            {item.finished ? "Done" : "In progress"}
+            >
+              <option value="In Progress">In Progress</option>
+              <option value="Done">Done</option>
+            </select>
           </p>
         </div>
       ))}
