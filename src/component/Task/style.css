@@ -6,30 +6,64 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .tasklist__item {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  width: calc(50% - 10px);
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  width: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   background: #fafafa;
   margin: 10px 0;
   padding: 5px 15px;
+  min-width: 50vw;
 }
 
 .tasklist__item > *, .tasklist__item > * textarea {
   width: 100%;
+}
+
+.tasklist__item--show {
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.tasklist__item--show .tasklist__description {
+  display: block;
+}
+
+.tasklist__item--show .tasklist__details {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.tasklist__item--show .tasklist__details p {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.tasklist__item--show .tasklist__details label {
+  display: block;
+}
+
+.tasklist__description {
+  display: none;
 }
 
 .tasklist__title input {
@@ -46,12 +80,24 @@
   color: #000;
 }
 
+.tasklist__button {
+  max-width: 150px;
+}
+
 .tasklist__details {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -ms-flex-pack: distribute;
       justify-content: space-around;
+}
+
+.tasklist__details label {
+  display: none;
 }
 
 .tasklist__details > * {
