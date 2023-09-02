@@ -33,6 +33,24 @@ const Task: React.FC<TaskProps> = ({ jsonData }) => {
     );
   };
 
+  const addTask = () => {
+    // Generate a new task with default values
+    const newTask = {
+      id: String(Date.now()), // Generate a unique ID (should possibly be updated in the future)
+      event: "",
+      description: "",
+      finished: false,
+      duedate: "", // You can add a default due date here
+    };
+    // Add the new task to the existing tasks
+    const updatedTasks = [...tasks, newTask];
+    setTasks(updatedTasks);
+    localStorage.setItem(
+      "jsonData",
+      JSON.stringify({ ...jsonData, tasks: updatedTasks })
+    );
+  };
+
   useEffect(() => {
     const storedData = localStorage.getItem("jsonData");
     if (storedData) {
@@ -112,6 +130,7 @@ const Task: React.FC<TaskProps> = ({ jsonData }) => {
           </p>
         </div>
       ))}
+      <button onClick={addTask}>Add Task</button>
     </div>
   );
 };
