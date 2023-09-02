@@ -1,4 +1,5 @@
 import React from "react";
+import { format, addSeconds } from "date-fns";
 
 interface JsonExportProps {
   data: any; // Use a specific type if you have one for your JSON data
@@ -16,7 +17,11 @@ const JsonExport: React.FC<JsonExportProps> = ({ data }) => {
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
-    link.download = "mind-mate-data.json";
+    const currentDate = new Date();
+    const timestamp = format(currentDate, "dd-MM-yyyy-HH-mm-ss");
+
+    link.download = `mind-mate-data-${timestamp}.json`;
+
     link.click();
     URL.revokeObjectURL(url);
   };
