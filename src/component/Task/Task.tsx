@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { faSquarePlus } from "@fortawesome/free-solid-svg-icons";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import "./style.css";
 
 interface TaskProps {
@@ -170,7 +171,11 @@ const Task: React.FC<TaskProps> = ({ jsonData }) => {
                 ])
               }
             >
-              <FontAwesomeIcon icon={faPenToSquare} />
+              {showStates[index] ? (
+                <FontAwesomeIcon icon={faXmark} />
+              ) : (
+                <FontAwesomeIcon icon={faPenToSquare} />
+              )}
             </button>
           </div>
         ))}

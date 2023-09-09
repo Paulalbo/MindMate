@@ -19,16 +19,20 @@
   -ms-flex-wrap: nowrap;
       flex-wrap: nowrap;
   width: 100%;
+  width: 750px;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
   background: #fafafa;
   margin: 10px 0;
   padding: 5px 15px;
-  min-width: 50vw;
+  -webkit-transition: .5s;
+  transition: .5s;
 }
 
 .tasklist__item--show {
+  -webkit-transition: .5s;
+  transition: .5s;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
 }
@@ -60,6 +64,7 @@
 
 .tasklist__item--show .tasklist__details label {
   display: block;
+  width: 100%;
 }
 
 .tasklist__description {
@@ -116,6 +121,7 @@
   border-radius: 25px;
   border: 1px solid black;
   padding: 2px 5px;
+  width: 100%;
 }
 
 .tasklist__details > * label {
