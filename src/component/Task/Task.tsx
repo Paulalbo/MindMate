@@ -11,11 +11,14 @@ const Task: React.FC<TaskProps> = ({ jsonData }) => {
     jsonData.tasks.map(() => false) // Initialize showStates with all false values
   );
 
+  // Define an array of status options
+  const statusOptions = ["Idea", "Open", "In Progress", "Done"]; // Add your additional statuses here
+
   const handleStatusChange = (
     taskId: string,
     newEventValue: string,
     newEventDescription: string,
-    newStatusValue: boolean,
+    newStatusValue: string,
     newDueDate: string
   ) => {
     const updatedTasks = tasks.map((task: { id: string }) =>
@@ -24,7 +27,7 @@ const Task: React.FC<TaskProps> = ({ jsonData }) => {
             ...task,
             event: newEventValue,
             description: newEventDescription,
-            finished: newStatusValue,
+            status: newStatusValue,
             duedate: newDueDate,
           }
         : task
@@ -38,13 +41,19 @@ const Task: React.FC<TaskProps> = ({ jsonData }) => {
 
   const addTask = () => {
     // Generate a new task with default values
+    const currentDate = new Date();
+    const formattedDate = `${currentDate.getFullYear()}-${String(
+      currentDate.getMonth() + 1
+    ).padStart(2, "0")}-${String(currentDate.getDate()).padStart(2, "0")}`;
+
     const newTask = {
       id: String(Date.now()), // Generate a unique ID (should possibly be updated in the future)
       event: "",
       description: "",
-      finished: false,
-      duedate: "", // You can add a default due date here
+      status: "Open", // Set a default status
+      duedate: formattedDate, // Set the default due date to the current date
     };
+
     // Add the new task to the existing tasks
     const updatedTasks = [...tasks, newTask];
     setTasks(updatedTasks);
@@ -89,7 +98,7 @@ const Task: React.FC<TaskProps> = ({ jsonData }) => {
                     item.id,
                     e.target.value,
                     item.description,
-                    item.finished,
+                    item.status,
                     item.duedate
                   )
                 }
@@ -106,7 +115,7 @@ const Task: React.FC<TaskProps> = ({ jsonData }) => {
                       item.id,
                       item.event,
                       item.description,
-                      item.finished,
+                      item.status,
                       e.target.value
                     )
                   }
@@ -115,19 +124,22 @@ const Task: React.FC<TaskProps> = ({ jsonData }) => {
               <p className="tasklist__status">
                 <label>Status: </label>
                 <select
-                  value={item.finished ? "Done" : "In Progress"}
+                  value={item.status}
                   onChange={(e) =>
                     handleStatusChange(
                       item.id,
                       item.event,
                       item.description,
-                      e.target.value === "Done",
+                      e.target.value,
                       item.duedate
                     )
                   }
                 >
-                  <option value="In Progress">In Progress</option>
-                  <option value="Done">Done</option>
+                  {statusOptions.map((option) => (
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
+                  ))}
                 </select>
               </p>
             </div>
@@ -139,7 +151,7 @@ const Task: React.FC<TaskProps> = ({ jsonData }) => {
                     item.id,
                     item.event,
                     e.target.value,
-                    item.finished,
+                    item.status,
                     item.duedate
                   )
                 }
