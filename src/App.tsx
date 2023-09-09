@@ -8,6 +8,10 @@ import DropZone from "./component/DropZone/DropZone";
 import JsonExport from "./component/JsonExport/JsonExport";
 
 function App() {
+  {
+    /* Add statistic feature somewhere - show dashboard with all open/in progres/closed tasks */
+  }
+
   const [jsonData, setJsonData] = useState(null);
 
   useEffect(() => {
