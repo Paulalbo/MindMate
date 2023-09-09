@@ -45,6 +45,10 @@
   display: block;
 }
 
+.tasklist__item--show .tasklist__description textarea {
+  height: 100px;
+}
+
 .tasklist__item--show .tasklist__details {
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;

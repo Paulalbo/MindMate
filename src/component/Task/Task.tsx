@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
-import { faSquarePlus } from "@fortawesome/free-solid-svg-icons";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import {
+  faPenToSquare,
+  faSquarePlus,
+  faTrash,
+  faXmark,
+} from "@fortawesome/free-solid-svg-icons";
 import "./style.css";
 
 interface TaskProps {
@@ -35,6 +38,17 @@ const Task: React.FC<TaskProps> = ({ jsonData }) => {
             duedate: newDueDate,
           }
         : task
+    );
+    setTasks(updatedTasks);
+    localStorage.setItem(
+      "jsonData",
+      JSON.stringify({ ...jsonData, tasks: updatedTasks })
+    );
+  };
+
+  const deleteTask = (taskId: string) => {
+    const updatedTasks = tasks.filter(
+      (task: { id: string }) => task.id !== taskId
     );
     setTasks(updatedTasks);
     localStorage.setItem(
@@ -161,6 +175,12 @@ const Task: React.FC<TaskProps> = ({ jsonData }) => {
                 }
               ></textarea>
             </p>
+            <button
+              className="tasklist__button tasklist__button--delete"
+              onClick={() => deleteTask(item.id)}
+            >
+              <FontAwesomeIcon icon={faTrash} />
+            </button>
             <button
               className="tasklist__button"
               onClick={() =>
