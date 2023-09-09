@@ -1,9 +1,13 @@
 import "./style.css";
-import { useState, useEffect } from "react";
-import { useDropzone } from "react-dropzone";
+import React, { useState, useEffect } from "react";
+import { useDropzone, FileWithPath } from "react-dropzone";
 
-const DropZone = ({ setJsonData }) => {
-  const [weekday, setWeekday] = useState("");
+interface DropZoneProps {
+  setJsonData: (data: any) => void; // Change 'any' to the actual type you expect
+}
+
+const DropZone: React.FC<DropZoneProps> = ({ setJsonData }) => {
+  const [weekday, setWeekday] = useState<string>("");
   useEffect(() => {
     const daysOfWeek = [
       "Sunday",
@@ -19,7 +23,7 @@ const DropZone = ({ setJsonData }) => {
     setWeekday(currentWeekday);
   }, []);
 
-  const [importedJsonData, setImportedJsonData] = useState(null);
+  const [importedJsonData, setImportedJsonData] = useState<any | null>(null);
 
   useEffect(() => {
     const storedData = localStorage.getItem("jsonData");
@@ -38,20 +42,22 @@ const DropZone = ({ setJsonData }) => {
       onDrop: (acceptedFiles) => {
         const reader = new FileReader();
         reader.onload = (event) => {
-          try {
-            const parsedData = JSON.parse(event.target.result);
-            setJsonData(parsedData);
-            setImportedJsonData(parsedData);
-            localStorage.setItem("jsonData", JSON.stringify(parsedData));
-          } catch (error) {
-            console.error("Error parsing JSON:", error);
+          if (event.target) {
+            try {
+              const parsedData = JSON.parse(event.target.result as string);
+              setJsonData(parsedData);
+              setImportedJsonData(parsedData);
+              localStorage.setItem("jsonData", JSON.stringify(parsedData));
+            } catch (error) {
+              console.error("Error parsing JSON:", error);
+            }
           }
         };
         reader.readAsText(acceptedFiles[0]);
       },
     });
 
-  const acceptedFileItems = acceptedFiles.map((file) => (
+  const acceptedFileItems = acceptedFiles.map((file: FileWithPath) => (
     <div key={file.path}>
       <h4>Accepted</h4>
       <p>
@@ -60,21 +66,25 @@ const DropZone = ({ setJsonData }) => {
     </div>
   ));
 
-  const fileRejectionItems = fileRejections.map(({ file, errors }) => (
-    <div key={file.path}>
-      <h4>Accepted files</h4>
-      <ul>
-        <li>
-          {file.path} - {file.size} bytes
-          <ul>
-            {errors.map((e) => (
-              <li key={e.code}>{e.message}</li>
-            ))}
-          </ul>
-        </li>
-      </ul>
-    </div>
-  ));
+  const fileRejectionItems = fileRejections.map(({ file, errors }) => {
+    const fileWithPath: FileWithPath = file; // Specify the type of file as FileWithPath
+
+    return (
+      <div key={fileWithPath.path}>
+        <h4>Accepted files</h4>
+        <ul>
+          <li>
+            {fileWithPath.path} - {fileWithPath.size} bytes
+            <ul>
+              {errors.map((e) => (
+                <li key={e.code}>{e.message}</li>
+              ))}
+            </ul>
+          </li>
+        </ul>
+      </div>
+    );
+  });
 
   return (
     <section className="container">

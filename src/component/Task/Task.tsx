@@ -18,7 +18,7 @@ const Task: React.FC<TaskProps> = ({ jsonData }) => {
     newStatusValue: boolean,
     newDueDate: string
   ) => {
-    const updatedTasks = tasks.map((task) =>
+    const updatedTasks = tasks.map((task: { id: string }) =>
       task.id === taskId
         ? {
             ...task,
@@ -71,7 +71,7 @@ const Task: React.FC<TaskProps> = ({ jsonData }) => {
   return (
     <>
       <div className="tasklist__container">
-        {tasks.map((item, index) => (
+        {tasks.map((item: any, index: number) => (
           <div
             className={
               showStates[index]
@@ -148,7 +148,7 @@ const Task: React.FC<TaskProps> = ({ jsonData }) => {
             <button
               className="tasklist__button"
               onClick={() =>
-                setShowStates((prev) => [
+                setShowStates((prev: string[]) => [
                   ...prev.slice(0, index),
                   !prev[index],
                   ...prev.slice(index + 1),
