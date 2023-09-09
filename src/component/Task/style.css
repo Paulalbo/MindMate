@@ -28,13 +28,13 @@
   min-width: 50vw;
 }
 
-.tasklist__item > *, .tasklist__item > * textarea {
-  width: 100%;
-}
-
 .tasklist__item--show {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+}
+
+.tasklist__item--show > *, .tasklist__item--show > * textarea {
+  width: 100%;
 }
 
 .tasklist__item--show .tasklist__description {
@@ -66,6 +66,10 @@
   display: none;
 }
 
+.tasklist__title {
+  width: 100%;
+}
+
 .tasklist__title input {
   width: 100%;
   text-transform: uppercase;
@@ -81,7 +85,11 @@
 }
 
 .tasklist__button {
-  max-width: 150px;
+  max-width: 50px;
+}
+
+.tasklist__button--newTask {
+  max-width: 100%;
 }
 
 .tasklist__details {

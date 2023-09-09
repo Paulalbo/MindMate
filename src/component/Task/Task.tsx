@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+import { faSquarePlus } from "@fortawesome/free-solid-svg-icons";
 import "./style.css";
 
 interface TaskProps {
@@ -167,13 +170,16 @@ const Task: React.FC<TaskProps> = ({ jsonData }) => {
                 ])
               }
             >
-              Edit
+              <FontAwesomeIcon icon={faPenToSquare} />
             </button>
           </div>
         ))}
       </div>
-      <button className="tasklist__button" onClick={addTask}>
-        Add Task
+      <button
+        className="tasklist__button tasklist__button--newTask"
+        onClick={addTask}
+      >
+        <FontAwesomeIcon icon={faSquarePlus} /> Add Task
       </button>
     </>
   );
