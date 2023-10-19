@@ -7,22 +7,6 @@ interface DropZoneProps {
 }
 
 const DropZone: React.FC<DropZoneProps> = ({ setJsonData }) => {
-  const [weekday, setWeekday] = useState<string>("");
-  useEffect(() => {
-    const daysOfWeek = [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-    ];
-    const currentDate = new Date();
-    const currentWeekday = daysOfWeek[currentDate.getDay()];
-    setWeekday(currentWeekday);
-  }, []);
-
   const [importedJsonData, setImportedJsonData] = useState<any | null>(null);
 
   useEffect(() => {
@@ -99,10 +83,7 @@ const DropZone: React.FC<DropZoneProps> = ({ setJsonData }) => {
         {fileRejectionItems}
         <div>
           {importedJsonData ? (
-            <p>
-              Hi, {importedJsonData.name}, hope you're having a wonderful{" "}
-              {weekday}!
-            </p>
+            <p>Hi, {importedJsonData.name}, your file has been accepted</p>
           ) : (
             <p>No JSON data to display</p>
           )}

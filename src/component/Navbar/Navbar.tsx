@@ -17,6 +17,9 @@ function Navbar() {
         <li>
           <Link to="/calender">Calender</Link>
         </li>
+        <li>
+          <Link to="/settings">Settings</Link>
+        </li>
       </ul>
     </nav>
   );

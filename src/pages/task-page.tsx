@@ -1,9 +1,11 @@
-const Tasks = () => {
+import TaskList from "../component/TaskList/TaskList";
+
+const TaskPage = () => {
   return (
     <div>
-      <h1>task page</h1>
+      <TaskList />
     </div>
   );
 };
 
-export default Tasks;
+export default TaskPage;
