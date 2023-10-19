@@ -4,14 +4,15 @@ import { faSquarePlus } from "@fortawesome/free-solid-svg-icons";
 
 import Task from "../Task/Task";
 
-interface TaskListProps {
-  jsonData: any;
-}
-
-const TaskList: React.FC<TaskListProps> = ({ jsonData }) => {
+const TaskList = () => {
   const statusOptions = ["Idea", "Open", "In Progress", "Done"];
-  const [tasks, setTasks] = useState(jsonData.tasks);
-  const [showStates, setShowStates] = useState(jsonData.tasks.map(() => false));
+  let jsonData = localStorage.getItem("jsonData");
+  const storedData = jsonData ? JSON.parse(jsonData) : { tasks: [] };
+
+  const [tasks, setTasks] = useState(storedData.tasks);
+  const [showStates, setShowStates] = useState(
+    storedData.tasks.map(() => false)
+  );
 
   const handleAddTask = () => {
     const currentDate = new Date();
@@ -32,7 +33,7 @@ const TaskList: React.FC<TaskListProps> = ({ jsonData }) => {
 
     localStorage.setItem(
       "jsonData",
-      JSON.stringify({ ...jsonData, tasks: [...tasks, newTask] })
+      JSON.stringify({ ...storedData, tasks: [...tasks, newTask] })
     );
   };
 
@@ -44,7 +45,7 @@ const TaskList: React.FC<TaskListProps> = ({ jsonData }) => {
 
     localStorage.setItem(
       "jsonData",
-      JSON.stringify({ ...jsonData, tasks: updatedTasks })
+      JSON.stringify({ ...storedData, tasks: updatedTasks })
     );
   };
 
@@ -64,7 +65,7 @@ const TaskList: React.FC<TaskListProps> = ({ jsonData }) => {
 
     localStorage.setItem(
       "jsonData",
-      JSON.stringify({ ...jsonData, tasks: updatedTasks })
+      JSON.stringify({ ...storedData, tasks: updatedTasks })
     );
   };
 
