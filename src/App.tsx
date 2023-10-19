@@ -24,8 +24,8 @@ function App() {
             <Route path="/" element={<Settings />} />
             <Route path="/task-page" element={<TaskPage />} />
             <Route path="/notes" element={<Notes />} />
-            <Route path="/life-goals" element={<Calender />} />
-            <Route path="/calender" element={<LifeGoals />} />
+            <Route path="/life-goals" element={<LifeGoals />} />
+            <Route path="/calender" element={<Calender />} />
             <Route path="/settings" element={<Settings />} />
           </Routes>
         </div>
