@@ -91,7 +91,7 @@ const TaskList = () => {
         </div>
       ))}
       <button
-        className="tasklist__button tasklist__button--newTask"
+        className="button tasklist__button tasklist__button--newTask"
         onClick={handleAddTask}
       >
         <FontAwesomeIcon icon={faSquarePlus} /> Add Task

@@ -27,9 +27,9 @@ const JsonExport: React.FC<JsonExportProps> = ({ data }) => {
   };
 
   return (
-    <div>
-      <button onClick={downloadJsonFile}>Export Data</button>
-    </div>
+    <button className="button button--export" onClick={downloadJsonFile}>
+      Export Data
+    </button>
   );
 };
 

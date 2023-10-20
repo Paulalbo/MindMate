@@ -109,12 +109,12 @@ const Task: React.FC<TaskProps> = ({
         ></textarea>
       </p>
       <button
-        className="tasklist__button tasklist__button--delete"
+        className="button tasklist__button tasklist__button--delete"
         onClick={() => onDelete(task.id)}
       >
         <FontAwesomeIcon icon={faTrash} />
       </button>
-      <button className="tasklist__button" onClick={onToggleShow}>
+      <button className="button tasklist__button" onClick={onToggleShow}>
         {show ? (
           <FontAwesomeIcon icon={faXmark} />
         ) : (

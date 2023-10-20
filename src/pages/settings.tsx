@@ -21,7 +21,10 @@ const Settings = () => {
       <DropZone setJsonData={setJsonData} />
       {jsonData && (
         <>
-          <button onClick={handleRemoveFromLocalStorage}>
+          <button
+            className="button button--remove-local"
+            onClick={handleRemoveFromLocalStorage}
+          >
             Remove Data from Local Storage
           </button>
         </>
