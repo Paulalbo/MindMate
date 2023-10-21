@@ -1,5 +1,31 @@
 .DraftEditor-root {
-  border: 1px solid black;
+  border: 1px solid #00000042;
+  border-radius: 15px;
   padding: 15px;
+  margin-top: 15px;
+}
+
+.editor__title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.editor__title label {
+  font-size: 18px;
+  font-weight: 700;
+  padding: 0 10px;
+}
+
+.editor__title #title {
+  border: unset;
+  border-bottom: 1px solid #00000042;
+  width: 100%;
+}
+
+.style-controls {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 /*# sourceMappingURL=style.css.map */
