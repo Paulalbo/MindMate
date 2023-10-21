@@ -23,6 +23,9 @@ function WysiwygEditor() {
   const [editorState, setEditorState] = React.useState(
     EditorState.createEmpty()
   );
+
+  // Add custom styling buttons
+
   const toggleBold = () => {
     setEditorState(RichUtils.toggleInlineStyle(editorState, "BOLD"));
   };
@@ -38,6 +41,8 @@ function WysiwygEditor() {
   const toggleHeading3 = () => {
     setEditorState(RichUtils.toggleInlineStyle(editorState, "H3"));
   };
+
+  // Export to PDF
 
   return (
     <div className="Editor">
@@ -57,6 +62,7 @@ function WysiwygEditor() {
         <button className="button" onClick={toggleHeading3}>
           H3
         </button>
+        <button className="button">Export to PDF</button>
       </div>
       <Editor
         editorState={editorState}
