@@ -5,6 +5,8 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-padding-start: 0;
+          padding-inline-start: 0;
 }
 
 .navbar__item {

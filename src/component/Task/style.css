@@ -19,15 +19,14 @@
   -ms-flex-wrap: nowrap;
       flex-wrap: nowrap;
   width: 100%;
-  width: 750px;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
   background: #fafafa;
   margin: 10px 0;
   padding: 5px 15px;
-  -webkit-transition: .5s;
-  transition: .5s;
+  -webkit-transition: .5s ease-in-out;
+  transition: .5s ease-in-out;
 }
 
 .tasklist__item--show {
