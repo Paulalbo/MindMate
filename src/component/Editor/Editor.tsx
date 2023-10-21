@@ -50,7 +50,7 @@ function WysiwygEditor() {
   // Export to PDF
 
   return (
-    <div className="Editor">
+    <div className="editor">
       <div className="style-controls">
         <button className="button" onClick={toggleBold}>
           Bold
@@ -68,6 +68,13 @@ function WysiwygEditor() {
           H3
         </button>
         <button className="button">Export to PDF</button>
+        <button className="button" style={{ marginLeft: "auto" }}>
+          Save
+        </button>
+      </div>
+      <div className="editor__title">
+        <label>Title:</label>
+        <input id="title" type="input"></input>
       </div>
       <Editor
         editorState={editorState}
