@@ -8,6 +8,11 @@ const customStyleMap = {
   H1: {
     fontSize: "30px",
     fontWeight: "900",
+    background: "#fafafa",
+    TextTransform: "uppercase",
+    padding: "10px 15px",
+    width: "100%",
+    display: "block",
   },
   H2: {
     fontSize: "25px",
