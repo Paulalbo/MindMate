@@ -42,11 +42,21 @@ function WysiwygEditor() {
   return (
     <div className="Editor">
       <div className="style-controls">
-        <button onClick={toggleBold}>Bold</button>
-        <button onClick={toggleItalic}>Italic</button>
-        <button onClick={toggleHeading1}>H1</button>
-        <button onClick={toggleHeading2}>H2</button>
-        <button onClick={toggleHeading3}>H3</button>
+        <button className="button" onClick={toggleBold}>
+          Bold
+        </button>
+        <button className="button" onClick={toggleItalic}>
+          Italic
+        </button>
+        <button className="button" onClick={toggleHeading1}>
+          H1
+        </button>
+        <button className="button" onClick={toggleHeading2}>
+          H2
+        </button>
+        <button className="button" onClick={toggleHeading3}>
+          H3
+        </button>
       </div>
       <Editor
         editorState={editorState}
