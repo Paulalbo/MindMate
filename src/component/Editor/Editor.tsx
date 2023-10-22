@@ -1,7 +1,8 @@
 import "./style.css";
 import React, { ReactNode, useState } from "react";
-import { Editor, EditorState, RichUtils } from "draft-js";
+import { Editor, EditorState, RichUtils, ContentState } from "draft-js";
 import { stateToHTML } from "draft-js-export-html";
+import htmlToDraft from "html-to-draftjs";
 import { format } from "date-fns";
 
 import "draft-js/dist/Draft.css";
@@ -93,6 +94,31 @@ function WysiwygEditor() {
     console.log("Note saved:", newNote);
   };
 
+  // create editor with existing content
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [modalEditorContent, setModalEditorContent] = useState(
+    EditorState.createEmpty()
+  );
+
+  function convertHTMLToContentState(htmlContent: string) {
+    const blocksFromHTML = htmlToDraft(htmlContent);
+    const contentState = ContentState.createFromBlockArray(
+      blocksFromHTML.contentBlocks,
+      blocksFromHTML.entityMap
+    );
+    return contentState;
+  }
+
+  const openModal = (contentEditor: string) => {
+    const contentState = convertHTMLToContentState(contentEditor);
+    setModalEditorContent(EditorState.createWithContent(contentState));
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
   return (
     <>
       <div className="notes">
@@ -113,7 +139,12 @@ function WysiwygEditor() {
                 dangerouslySetInnerHTML={{ __html: note.content }}
               />
               <div className="notes__controls">
-                <button className="button">view</button>
+                <button
+                  className="button"
+                  onClick={() => openModal(note.content)}
+                >
+                  view
+                </button>
                 <button className="button">edit</button>
                 <button className="button">delete</button>
               </div>
@@ -156,6 +187,21 @@ function WysiwygEditor() {
           customStyleMap={customStyleMap}
         />
       </div>
+      {isModalOpen && (
+        <div className="notes__modalcontainer">
+          <div className="notes__modal">
+            <Editor
+              editorState={modalEditorContent}
+              readOnly={true}
+              onChange={(newEditorState) => {}}
+              customStyleMap={customStyleMap}
+            />
+            <button className="button" onClick={closeModal}>
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </>
   );
 }
