@@ -7,13 +7,13 @@ const Settings = () => {
   const [jsonData, setJsonData] = useState(null);
 
   useEffect(() => {
-    const storedData = localStorage.getItem("jsonData");
+    const storedData = localStorage.getItem("mindMateData");
     if (storedData) {
       setJsonData(JSON.parse(storedData));
     }
   }, []);
   const handleRemoveFromLocalStorage = () => {
-    localStorage.removeItem("jsonData");
+    localStorage.removeItem("mindMateData");
     setJsonData(null);
   };
   return (

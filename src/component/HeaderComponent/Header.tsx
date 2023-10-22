@@ -20,7 +20,7 @@ const Header = () => {
   }, []);
   const [importedJsonData, setImportedJsonData] = useState<any | null>(null);
   useEffect(() => {
-    const storedData = localStorage.getItem("jsonData");
+    const storedData = localStorage.getItem("mindMateData");
     if (storedData) {
       const parsedData = JSON.parse(storedData);
       setImportedJsonData(parsedData);

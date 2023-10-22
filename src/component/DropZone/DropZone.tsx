@@ -10,7 +10,7 @@ const DropZone: React.FC<DropZoneProps> = ({ setJsonData }) => {
   const [importedJsonData, setImportedJsonData] = useState<any | null>(null);
 
   useEffect(() => {
-    const storedData = localStorage.getItem("jsonData");
+    const storedData = localStorage.getItem("mindMateData");
     if (storedData) {
       const parsedData = JSON.parse(storedData);
       setImportedJsonData(parsedData);
@@ -31,7 +31,7 @@ const DropZone: React.FC<DropZoneProps> = ({ setJsonData }) => {
               const parsedData = JSON.parse(event.target.result as string);
               setJsonData(parsedData);
               setImportedJsonData(parsedData);
-              localStorage.setItem("jsonData", JSON.stringify(parsedData));
+              localStorage.setItem("mindMateData", JSON.stringify(parsedData));
             } catch (error) {
               console.error("Error parsing JSON:", error);
             }

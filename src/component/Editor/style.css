@@ -1,6 +1,6 @@
 .DraftEditor-root {
   border: 1px solid #00000042;
-  border-radius: 15px;
+  border-radius: 5px;
   padding: 15px;
   margin-top: 15px;
 }
@@ -21,6 +21,10 @@
   border: unset;
   border-bottom: 1px solid #00000042;
   width: 100%;
+}
+
+.editor__title #title:focus {
+  outline: none;
 }
 
 .style-controls {

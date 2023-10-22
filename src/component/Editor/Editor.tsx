@@ -9,7 +9,6 @@ const customStyleMap = {
     fontSize: "30px",
     fontWeight: "900",
     background: "#fafafa",
-    TextTransform: "uppercase",
     padding: "10px 15px",
     width: "100%",
     display: "block",
@@ -49,6 +48,45 @@ function WysiwygEditor() {
 
   // Export to PDF
 
+  // Save Note and add to json data
+  const saveNote = () => {
+    // Get the current editor content
+    const contentState = editorState.getCurrentContent();
+    const contentText = contentState;
+
+    // Get the title from the input field
+    const titleInput = document.getElementById("title") as HTMLInputElement;
+    const title = titleInput.value;
+
+    // Retrieve existing data from local storage or initialize it if not present
+    const localStorageData = localStorage.getItem("mindMateData");
+    let existingData = localStorageData ? JSON.parse(localStorageData) : {};
+
+    if (!existingData.notes) {
+      existingData.notes = [];
+    }
+
+    // Create a new note object
+    const newNote = {
+      id: "", // You can generate a unique ID
+      title,
+      content: contentText,
+      date: new Date().toISOString(), // Store the creation date
+    };
+
+    // Add the new note to the notes array
+    existingData.notes.push(newNote);
+
+    // Update the local storage with the updated data
+    localStorage.setItem("mindMateData", JSON.stringify(existingData));
+
+    // Clear the input field and editor
+    titleInput.value = "";
+    setEditorState(EditorState.createEmpty());
+
+    console.log("Note saved:", newNote);
+  };
+
   return (
     <div className="editor">
       <div className="style-controls">
@@ -67,8 +105,10 @@ function WysiwygEditor() {
         <button className="button" onClick={toggleHeading3}>
           H3
         </button>
-        <button className="button">Export to PDF</button>
         <button className="button" style={{ marginLeft: "auto" }}>
+          Export to PDF
+        </button>
+        <button className="button" onClick={saveNote}>
           Save
         </button>
       </div>
