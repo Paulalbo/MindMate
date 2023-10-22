@@ -112,6 +112,11 @@ function WysiwygEditor() {
                 className="notes__content"
                 dangerouslySetInnerHTML={{ __html: note.content }}
               />
+              <div className="notes__controls">
+                <button className="button">view</button>
+                <button className="button">edit</button>
+                <button className="button">delete</button>
+              </div>
             </div>
           )
         )}
