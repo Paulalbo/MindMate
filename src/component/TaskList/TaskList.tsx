@@ -6,7 +6,7 @@ import Task from "../Task/Task";
 
 const TaskList = () => {
   const statusOptions = ["Idea", "Open", "In Progress", "Done"];
-  let jsonData = localStorage.getItem("jsonData");
+  let jsonData = localStorage.getItem("mindMateData");
   const storedData = jsonData ? JSON.parse(jsonData) : { tasks: [] };
 
   const [tasks, setTasks] = useState(storedData.tasks);
@@ -32,7 +32,7 @@ const TaskList = () => {
     setShowStates((prevStates: any) => [...prevStates, false]);
 
     localStorage.setItem(
-      "jsonData",
+      "mindMateData",
       JSON.stringify({ ...storedData, tasks: [...tasks, newTask] })
     );
   };
@@ -44,7 +44,7 @@ const TaskList = () => {
     setTasks(updatedTasks);
 
     localStorage.setItem(
-      "jsonData",
+      "mindMateData",
       JSON.stringify({ ...storedData, tasks: updatedTasks })
     );
   };
@@ -64,7 +64,7 @@ const TaskList = () => {
     setTasks(updatedTasks);
 
     localStorage.setItem(
-      "jsonData",
+      "mindMateData",
       JSON.stringify({ ...storedData, tasks: updatedTasks })
     );
   };
