@@ -34,7 +34,10 @@
         justify-content: flex-start
         flex-wrap: wrap
         font-size: 4px
-
+        position: relative
+        &:hover 
+            .notes__controls
+                top: 0
     &__date, &__title
         margin: 0
         width: 100%
@@ -49,6 +52,25 @@
         font-size: 10px
         padding-bottom: 0px
 
+    &__controls
+        position: absolute
+        width: 100%
+        height: 100%
+        top: -150%
+        left: 0
+        z-index: 999
+        display: flex
+        flex-direction: column
+        align-items: center
+        justify-content: center
+        background: #fff
+        transition: .7s ease-in-out
+        overflow: hidden
+        box-shadow: -3px -3px 27px 0px rgba(0,0,0,0.75);
+
+        .button 
+            font-size: 12px
+            text-transform: uppercase
 
     &__content
         padding: 10px

@@ -57,6 +57,11 @@
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   font-size: 4px;
+  position: relative;
+}
+
+.notes__document:hover .notes__controls {
+  top: 0;
 }
 
 .notes__date, .notes__title {
@@ -76,6 +81,39 @@
 .notes__date {
   font-size: 10px;
   padding-bottom: 0px;
+}
+
+.notes__controls {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: -150%;
+  left: 0;
+  z-index: 999;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background: #fff;
+  -webkit-transition: .7s ease-in-out;
+  transition: .7s ease-in-out;
+  overflow: hidden;
+  -webkit-box-shadow: -3px -3px 27px 0px rgba(0, 0, 0, 0.75);
+          box-shadow: -3px -3px 27px 0px rgba(0, 0, 0, 0.75);
+}
+
+.notes__controls .button {
+  font-size: 12px;
+  text-transform: uppercase;
 }
 
 .notes__content {
