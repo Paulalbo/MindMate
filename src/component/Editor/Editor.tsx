@@ -2,6 +2,7 @@ import "./style.css";
 import React, { ReactNode, useState } from "react";
 import { Editor, EditorState, RichUtils } from "draft-js";
 import { stateToHTML } from "draft-js-export-html";
+import { format } from "date-fns";
 
 import "draft-js/dist/Draft.css";
 
@@ -96,10 +97,21 @@ function WysiwygEditor() {
     <>
       <div className="notes">
         {notes.map(
-          (note: { id: string; content: string; title: ReactNode }) => (
-            <div className="notes__note" key={note.id}>
-              <p>{note.title}</p>
-              <div dangerouslySetInnerHTML={{ __html: note.content }} />
+          (note: {
+            id: string;
+            content: string;
+            title: ReactNode;
+            date: string;
+          }) => (
+            <div className="notes__document" key={note.id}>
+              <p className="notes__date">
+                {format(new Date(note.date), "dd. MMM. yyyy")}
+              </p>
+              <p className="notes__title">{note.title}</p>
+              <div
+                className="notes__content"
+                dangerouslySetInnerHTML={{ __html: note.content }}
+              />
             </div>
           )
         )}

@@ -33,9 +33,54 @@
   display: flex;
 }
 
-.notes__note {
-  border: 1px solid #00000042;
-  padding: 20px;
-  margin: 40px 0;
+.notes {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.notes__document {
+  border: 5px solid #e8e8e8;
+  border-radius: 15px;
+  margin: 20px 10px;
+  width: 200px;
+  height: 250px;
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-line-pack: start;
+      align-content: flex-start;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  font-size: 4px;
+}
+
+.notes__date, .notes__title {
+  margin: 0;
+  width: 100%;
+  text-align: left;
+  background-color: #fafafa;
+  padding: 5px 10px;
+}
+
+.notes__title {
+  padding-top: 0px;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.notes__date {
+  font-size: 10px;
+  padding-bottom: 0px;
+}
+
+.notes__content {
+  padding: 10px;
+  text-align: left;
+  width: 100%;
 }
 /*# sourceMappingURL=style.css.map */

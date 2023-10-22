@@ -21,7 +21,36 @@
     display: flex
 
 .notes
-    &__note
-        border: 1px solid #00000042
-        padding: 20px
-        margin: 40px 0
+    display: flex
+    &__document
+        border: 5px solid #e8e8e8
+        border-radius: 15px
+        margin: 20px 10px
+        width: 200px
+        height: 250px
+        overflow: hidden
+        display: flex
+        align-content: flex-start
+        justify-content: flex-start
+        flex-wrap: wrap
+        font-size: 4px
+
+    &__date, &__title
+        margin: 0
+        width: 100%
+        text-align: left
+        background-color: #fafafa
+        padding: 5px 10px
+    &__title
+        padding-top: 0px
+        font-weight: 700
+        font-size: 12px
+    &__date
+        font-size: 10px
+        padding-bottom: 0px
+
+
+    &__content
+        padding: 10px
+        text-align: left
+        width: 100%
