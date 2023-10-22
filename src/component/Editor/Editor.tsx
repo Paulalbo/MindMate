@@ -96,14 +96,15 @@ function WysiwygEditor() {
     <>
       <div className="notes">
         {notes.map(
-          (note: { id: string; content: ReactNode; title: ReactNode }) => (
+          (note: { id: string; content: string; title: ReactNode }) => (
             <div className="notes__note" key={note.id}>
               <p>{note.title}</p>
-              <div>{note.content}</div>
+              <div dangerouslySetInnerHTML={{ __html: note.content }} />
             </div>
           )
         )}
       </div>
+
       <div className="editor">
         <div className="style-controls">
           <button className="button" onClick={toggleBold}>
