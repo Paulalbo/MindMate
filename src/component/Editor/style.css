@@ -32,4 +32,10 @@
   display: -ms-flexbox;
   display: flex;
 }
+
+.notes__note {
+  border: 1px solid #00000042;
+  padding: 20px;
+  margin: 40px 0;
+}
 /*# sourceMappingURL=style.css.map */
