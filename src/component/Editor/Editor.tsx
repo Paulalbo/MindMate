@@ -1,6 +1,7 @@
 import "./style.css";
-import React from "react";
+import React, { ReactNode, useState } from "react";
 import { Editor, EditorState, RichUtils } from "draft-js";
+import { stateToHTML } from "draft-js-export-html";
 
 import "draft-js/dist/Draft.css";
 
@@ -37,22 +38,26 @@ function WysiwygEditor() {
     setEditorState(RichUtils.toggleInlineStyle(editorState, "ITALIC"));
   };
   const toggleHeading1 = () => {
-    setEditorState(RichUtils.toggleInlineStyle(editorState, "H1"));
+    setEditorState(RichUtils.toggleBlockType(editorState, "header-one"));
   };
   const toggleHeading2 = () => {
-    setEditorState(RichUtils.toggleInlineStyle(editorState, "H2"));
+    setEditorState(RichUtils.toggleBlockType(editorState, "header-two"));
   };
   const toggleHeading3 = () => {
-    setEditorState(RichUtils.toggleInlineStyle(editorState, "H3"));
+    setEditorState(RichUtils.toggleBlockType(editorState, "header-three"));
   };
 
+  // Get existing Tasks
+  let jsonData = localStorage.getItem("mindMateData");
+  const storedNotes = jsonData ? JSON.parse(jsonData) : { tasks: [] };
+  const [notes] = useState(storedNotes.notes);
   // Export to PDF
 
   // Save Note and add to json data
   const saveNote = () => {
     // Get the current editor content
     const contentState = editorState.getCurrentContent();
-    const contentText = contentState;
+    const contentText = stateToHTML(contentState);
 
     // Get the title from the input field
     const titleInput = document.getElementById("title") as HTMLInputElement;
@@ -68,7 +73,7 @@ function WysiwygEditor() {
 
     // Create a new note object
     const newNote = {
-      id: "", // You can generate a unique ID
+      id: String(Date.now()),
       title,
       content: contentText,
       date: new Date().toISOString(), // Store the creation date
@@ -88,40 +93,52 @@ function WysiwygEditor() {
   };
 
   return (
-    <div className="editor">
-      <div className="style-controls">
-        <button className="button" onClick={toggleBold}>
-          Bold
-        </button>
-        <button className="button" onClick={toggleItalic}>
-          Italic
-        </button>
-        <button className="button" onClick={toggleHeading1}>
-          H1
-        </button>
-        <button className="button" onClick={toggleHeading2}>
-          H2
-        </button>
-        <button className="button" onClick={toggleHeading3}>
-          H3
-        </button>
-        <button className="button" style={{ marginLeft: "auto" }}>
-          Export to PDF
-        </button>
-        <button className="button" onClick={saveNote}>
-          Save
-        </button>
+    <>
+      <div className="notes">
+        {notes.map(
+          (note: { id: string; content: ReactNode; title: ReactNode }) => (
+            <div className="notes__note" key={note.id}>
+              <p>{note.title}</p>
+              <div>{note.content}</div>
+            </div>
+          )
+        )}
       </div>
-      <div className="editor__title">
-        <label>Title:</label>
-        <input id="title" type="input"></input>
+      <div className="editor">
+        <div className="style-controls">
+          <button className="button" onClick={toggleBold}>
+            Bold
+          </button>
+          <button className="button" onClick={toggleItalic}>
+            Italic
+          </button>
+          <button className="button" onClick={toggleHeading1}>
+            H1
+          </button>
+          <button className="button" onClick={toggleHeading2}>
+            H2
+          </button>
+          <button className="button" onClick={toggleHeading3}>
+            H3
+          </button>
+          <button className="button" style={{ marginLeft: "auto" }}>
+            Export to PDF
+          </button>
+          <button className="button" onClick={saveNote}>
+            Save
+          </button>
+        </div>
+        <div className="editor__title">
+          <label>Title:</label>
+          <input id="title" type="input"></input>
+        </div>
+        <Editor
+          editorState={editorState}
+          onChange={setEditorState}
+          customStyleMap={customStyleMap}
+        />
       </div>
-      <Editor
-        editorState={editorState}
-        onChange={setEditorState}
-        customStyleMap={customStyleMap}
-      />
-    </div>
+    </>
   );
 }
 
