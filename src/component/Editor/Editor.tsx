@@ -53,6 +53,7 @@ function WysiwygEditor() {
   let jsonData = localStorage.getItem("mindMateData");
   const storedNotes = jsonData ? JSON.parse(jsonData) : { tasks: [] };
   const [notes] = useState(storedNotes.notes);
+
   // Export to PDF
 
   // Save Note and add to json data
@@ -114,6 +115,10 @@ function WysiwygEditor() {
     setModalEditorContent(EditorState.createWithContent(contentState));
     setModalOpen(true);
   };
+  //const openModalEdit = (contentEditor: string) => {
+  //  setModalEditorContent(EditorState.createWithContent(contentEditor));
+  //  setModalOpen(true);
+  //};
 
   const closeModal = () => {
     setModalOpen(false);
@@ -122,6 +127,11 @@ function WysiwygEditor() {
   return (
     <>
       <div className="notes">
+        <div className="notes__document notes__document--new">
+          <div className="notes__content">
+            <button>+</button>
+          </div>
+        </div>
         {notes.map(
           (note: {
             id: string;
