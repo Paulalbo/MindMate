@@ -61,6 +61,20 @@
   position: relative;
 }
 
+.notes__document--new {
+  font-size: 45px;
+  font-weight: 900;
+  overflow: unset;
+  padding: 10px;
+}
+
+.notes__document--new .button {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  border: none;
+}
+
 .notes__document:hover .notes__controls {
   top: 0;
 }
