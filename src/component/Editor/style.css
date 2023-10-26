@@ -151,11 +151,8 @@
   z-index: 11;
   width: 100%;
   max-width: 80vw;
-}
-
-.notes__modal .DraftEditor-root {
-  margin: 0;
   background: #fff;
+  border-radius: 25px;
   max-height: 80vh;
   overflow-y: scroll;
   overflow-x: hidden;
