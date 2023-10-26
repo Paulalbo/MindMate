@@ -1,5 +1,5 @@
 import "./style.css";
-import React, { ReactNode, useState } from "react";
+import { ReactNode, useState } from "react";
 import { Editor, EditorState, RichUtils, ContentState } from "draft-js";
 import { stateToHTML } from "draft-js-export-html";
 import htmlToDraft from "html-to-draftjs";
@@ -124,6 +124,8 @@ function WysiwygEditor() {
 
   const closeModal = () => {
     setModalOpen(false);
+    // refresh page after save
+    window.location.reload();
   };
 
   return (
