@@ -46,9 +46,10 @@ h1 {
   cursor: pointer;
   transition: border-color 0.25s;
   margin: 10px;
+  border: 1px solid #e8e8e8;
 }
 .button:hover {
-  border-color: #646cff;
+  background: #e8e8e8;
 }
 .button:focus,
 .button:focus-visible {

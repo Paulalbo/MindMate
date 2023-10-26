@@ -67,6 +67,7 @@ function WysiwygEditor() {
   const [notes] = useState(storedNotes.notes);
 
   // Export to PDF
+  // coming soon
 
   // Save Note and add to json data
   const saveNote = () => {
@@ -132,9 +133,9 @@ function WysiwygEditor() {
     <>
       <div className="notes">
         <div className="notes__document notes__document--new">
-          <div className="notes__content">
-            <button onClick={() => openModalNew()}>+ New Note</button>
-          </div>
+          <button className="button" onClick={() => openModalNew()}>
+            +
+          </button>
         </div>
         {notes.map(
           (note: {
@@ -185,10 +186,14 @@ function WysiwygEditor() {
               <button className="button" onClick={toggleHeading3}>
                 H3
               </button>
-              <button className="button" style={{ marginLeft: "auto" }}>
+              {/* <button className="button" style={{ marginLeft: "auto" }}>
                 Export to PDF
-              </button>
-              <button className="button" onClick={saveNote}>
+              </button>*/}
+              <button
+                className="button"
+                onClick={saveNote}
+                style={{ marginLeft: "auto" }}
+              >
                 Save
               </button>
               <button className="button" onClick={closeModal}>
