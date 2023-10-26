@@ -1,14 +1,9 @@
-.DraftEditor-root {
-  border: 1px solid #00000042;
-  border-radius: 5px;
-  padding: 15px;
-  margin-top: 15px;
-}
-
 .editor__title {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  overflow: hidden;
+  padding-bottom: 15px;
 }
 
 .editor__title label {
@@ -31,6 +26,9 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  background: #fff;
+  position: relative;
+  border-radius: 25px 25px 0 0;
 }
 
 .notes {
@@ -153,8 +151,15 @@
   max-width: 80vw;
   background: #fff;
   border-radius: 25px;
-  max-height: 80vh;
+}
+
+.notes__modal .DraftEditor-root {
+  border: 1px solid #00000042;
+  border-radius: 25px;
+  padding: 15px;
   overflow-y: scroll;
   overflow-x: hidden;
+  min-height: 50vh;
+  max-height: 70vh;
 }
 /*# sourceMappingURL=style.css.map */
