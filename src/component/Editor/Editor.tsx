@@ -70,7 +70,7 @@ function WysiwygEditor() {
   // coming soon
 
   // Save Note and add to json data
-  const saveNote = () => {
+  const publishNote = () => {
     // Get the current editor content
     const contentState = modalEditorContent.getCurrentContent();
     const contentText = stateToHTML(contentState);
@@ -102,6 +102,10 @@ function WysiwygEditor() {
     localStorage.setItem("mindMateData", JSON.stringify(existingData));
 
     console.log("Note saved:", newNote);
+  };
+
+  const saveNote = () => {
+    console.log("save shit");
   };
 
   function convertHTMLToContentState(htmlContent: string) {
@@ -183,19 +187,28 @@ function WysiwygEditor() {
               <button className="button" onClick={toggleHeading2}>
                 H2
               </button>
-              <button className="button" onClick={toggleHeading3}>
+              <button
+                style={{ marginRight: "auto" }}
+                className="button"
+                onClick={toggleHeading3}
+              >
                 H3
               </button>
-              {/* <button className="button" style={{ marginLeft: "auto" }}>
+              {/* <button className="button">
                 Export to PDF
               </button>*/}
-              <button
-                className="button"
-                onClick={saveNote}
-                style={{ marginLeft: "auto" }}
-              >
-                Save
-              </button>
+              {/* Conditional rendering for Publish or Save button */}
+              {notes.length === 0 ? ( // Check if the notes array is empty
+                // If there are no notes, display the "Publish" button
+                <button className="button" onClick={publishNote}>
+                  Publish
+                </button>
+              ) : (
+                // If there are notes, display the "Save" button
+                <button className="button" onClick={saveNote}>
+                  Save
+                </button>
+              )}
               <button className="button" onClick={closeModal}>
                 X
               </button>
