@@ -9,6 +9,7 @@ import {
   faBold,
   faItalic,
   faStrikethrough,
+  faHighlighter,
 } from "@fortawesome/free-solid-svg-icons";
 
 interface WysiwygEditorProps {
@@ -17,6 +18,9 @@ interface WysiwygEditorProps {
 const styleMap = {
   STRIKETHROUGH: {
     textDecoration: "line-through",
+  },
+  HIGHLIGHT: {
+    backgroundColor: "#FFFF00",
   },
 };
 
@@ -141,6 +145,12 @@ const WysiwygEditor: React.FC<WysiwygEditorProps> = ({ selectNote }) => {
                 onClick={() => handleToggleStyle("STRIKETHROUGH")}
               >
                 <FontAwesomeIcon icon={faStrikethrough} />
+              </button>
+              <button
+                className="button"
+                onClick={() => handleToggleStyle("HIGHLIGHT")}
+              >
+                <FontAwesomeIcon icon={faHighlighter} />
               </button>
               <button
                 className="button"
