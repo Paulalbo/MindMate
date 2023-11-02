@@ -6,12 +6,27 @@ import "../component/Editor/style.css";
 const Notes = () => {
   const currentNoteID = new URLSearchParams(window.location.search).get("note");
 
-  // Get existing Tasks
+  // Get existing Notes
   let jsonData = localStorage.getItem("mindMateData");
-  const storedNotes = jsonData ? JSON.parse(jsonData) : { tasks: [] };
-  const [notes] = useState(storedNotes.notes);
+  const storedNotes = jsonData ? JSON.parse(jsonData) : { notes: [] };
+  const [notes, setNotes] = useState(storedNotes.notes);
 
-  function noteEditor(noteID: any) {
+  // Function to delete a note by ID
+  const deleteNote = (noteID: string) => {
+    // Remove the note with the given ID from the notes array
+    const updatedNotes = notes.filter(
+      (note: { id: string }) => note.id !== noteID
+    );
+
+    // Update the local storage data
+    const updatedData = { notes: updatedNotes };
+    localStorage.setItem("mindMateData", JSON.stringify(updatedData));
+
+    // Update the notes state
+    setNotes(updatedNotes);
+  };
+
+  function noteEditor(noteID: string | null) {
     if (noteID) {
       return <WysiwygEditor selectNote={noteID} />;
     }
@@ -58,7 +73,14 @@ const Notes = () => {
                 >
                   open
                 </a>
-                <button className="button">delete</button>
+                <button
+                  className="button"
+                  onClick={() => {
+                    deleteNote(note.id);
+                  }}
+                >
+                  delete
+                </button>
               </div>
             </div>
           )
