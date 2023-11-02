@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Key, useState } from "react";
 import { format } from "date-fns";
 import WysiwygEditor from "../component/Editor/Editor";
 import "../component/Editor/style.css";
@@ -6,24 +6,30 @@ import "../component/Editor/style.css";
 const Notes = () => {
   const currentNoteID = new URLSearchParams(window.location.search).get("note");
 
-  // Get existing Notes
+  // Get existing data from local storage
   let jsonData = localStorage.getItem("mindMateData");
-  const storedNotes = jsonData ? JSON.parse(jsonData) : { notes: [] };
-  const [notes, setNotes] = useState(storedNotes.notes);
+  const storedData = jsonData ? JSON.parse(jsonData) : { notes: [], tasks: [] };
+  const [data, setData] = useState(storedData);
 
   // Function to delete a note by ID
-  const deleteNote = (noteID: string) => {
-    // Remove the note with the given ID from the notes array
-    const updatedNotes = notes.filter(
-      (note: { id: string }) => note.id !== noteID
+  const deleteNote = (noteID: any) => {
+    // Find the index of the note to be deleted
+    const noteIndex = data.notes.findIndex(
+      (note: { id: any }) => note.id === noteID
     );
 
-    // Update the local storage data
-    const updatedData = { notes: updatedNotes };
-    localStorage.setItem("mindMateData", JSON.stringify(updatedData));
+    // If the note was found, remove it from the array
+    if (noteIndex !== -1) {
+      const updatedNotes = [...data.notes];
+      updatedNotes.splice(noteIndex, 1);
 
-    // Update the notes state
-    setNotes(updatedNotes);
+      // Create a new data object with updated notes array
+      const updatedData = { ...data, notes: updatedNotes };
+
+      // Update the local storage data and the state
+      localStorage.setItem("mindMateData", JSON.stringify(updatedData));
+      setData(updatedData);
+    }
   };
 
   function noteEditor(noteID: string | null) {
@@ -48,12 +54,12 @@ const Notes = () => {
             +
           </a>
         </div>
-        {notes.map(
+        {data.notes.map(
           (note: {
-            id: string;
-            content: string;
+            id: Key | null | undefined;
+            date: string | number | Date;
             title: string;
-            date: string;
+            content: any;
           }) => (
             <div className="notes__document" key={note.id}>
               <p className="notes__date">

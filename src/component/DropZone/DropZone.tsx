@@ -83,7 +83,7 @@ const DropZone: React.FC<DropZoneProps> = ({ setJsonData }) => {
         {fileRejectionItems}
         <div>
           {importedJsonData ? (
-            <p>Hi, {importedJsonData.name}, your file has been accepted</p>
+            <p>Data file you are using is valid</p>
           ) : (
             <p>No JSON data to display</p>
           )}
