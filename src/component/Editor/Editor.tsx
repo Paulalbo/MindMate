@@ -68,6 +68,7 @@ const WysiwygEditor: React.FC<WysiwygEditorProps> = ({ selectNote }) => {
 
   const closeModal = () => {
     setModalOpen(false);
+    window.location.href = "./notes";
   };
 
   const publishNote = () => {
