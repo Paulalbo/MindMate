@@ -104,7 +104,6 @@ const WysiwygEditor: React.FC<WysiwygEditorProps> = ({ selectNote }) => {
 
     localStorage.setItem("mindMateData", JSON.stringify(existingData));
     console.log("Note published/updated:", newTitle);
-    closeModal();
   };
 
   return (
