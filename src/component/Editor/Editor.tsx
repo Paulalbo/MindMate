@@ -4,6 +4,12 @@ import { Editor, EditorState, RichUtils, ContentState } from "draft-js";
 import { stateToHTML } from "draft-js-export-html";
 import htmlToDraft from "html-to-draftjs";
 import "draft-js/dist/Draft.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faBold,
+  faItalic,
+  faStrikethrough,
+} from "@fortawesome/free-solid-svg-icons";
 
 interface WysiwygEditorProps {
   selectNote: string;
@@ -122,19 +128,19 @@ const WysiwygEditor: React.FC<WysiwygEditorProps> = ({ selectNote }) => {
                 className="button"
                 onClick={() => handleToggleStyle("BOLD")}
               >
-                Bold
+                <FontAwesomeIcon icon={faBold} />
               </button>
               <button
                 className="button"
                 onClick={() => handleToggleStyle("ITALIC")}
               >
-                Italic
+                <FontAwesomeIcon icon={faItalic} />
               </button>
               <button
                 className="button"
                 onClick={() => handleToggleStyle("STRIKETHROUGH")}
               >
-                strikethrough
+                <FontAwesomeIcon icon={faStrikethrough} />
               </button>
               <button
                 className="button"
