@@ -8,6 +8,11 @@ import "draft-js/dist/Draft.css";
 interface WysiwygEditorProps {
   selectNote: string;
 }
+const styleMap = {
+  STRIKETHROUGH: {
+    textDecoration: "line-through",
+  },
+};
 
 const WysiwygEditor: React.FC<WysiwygEditorProps> = ({ selectNote }) => {
   const [isModalOpen, setModalOpen] = useState(true);
@@ -126,6 +131,12 @@ const WysiwygEditor: React.FC<WysiwygEditorProps> = ({ selectNote }) => {
               </button>
               <button
                 className="button"
+                onClick={() => handleToggleStyle("STRIKETHROUGH")}
+              >
+                strikethrough
+              </button>
+              <button
+                className="button"
                 onClick={() => handleToggleBlockType("header-one")}
               >
                 H1
@@ -168,6 +179,7 @@ const WysiwygEditor: React.FC<WysiwygEditorProps> = ({ selectNote }) => {
             </div>
 
             <Editor
+              customStyleMap={styleMap}
               editorState={modalEditorContent}
               onChange={setModalEditorContent}
             />
