@@ -64,7 +64,7 @@ h1 {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
   margin: 10px;
@@ -72,6 +72,7 @@ h1 {
 }
 .button:hover {
   background: #e8e8e8;
+  color: #1a1a1a;
 }
 .button:focus,
 .button:focus-visible {
