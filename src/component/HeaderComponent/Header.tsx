@@ -33,7 +33,7 @@ const Header = () => {
       {importedJsonData ? (
         <p>
           {" "}
-          Hi, {importedJsonData.name}, hope you're having a wonderful {weekday}!
+          Hi {importedJsonData.name}, hope you're having a wonderful {weekday}!
         </p>
       ) : (
         <p>No JSON data to display</p>
