@@ -7,6 +7,7 @@ const Settings = () => {
   const [jsonData, setJsonData] = useState(null);
   let mindMateData = localStorage.getItem("mindMateData");
   const storedData = mindMateData ? JSON.parse(mindMateData) : "";
+  console.log(jsonData);
 
   const handleRemoveFromLocalStorage = () => {
     localStorage.removeItem("mindMateData");
@@ -40,7 +41,7 @@ const Settings = () => {
         </button>
       </div>
       <DropZone setJsonData={setJsonData} />
-      {jsonData && (
+      {storedData && (
         <>
           <button
             className="button button--remove-local"
@@ -50,7 +51,7 @@ const Settings = () => {
           </button>
         </>
       )}
-      <JsonExport data={jsonData} />
+      <JsonExport data={storedData} />
     </>
   );
 };
