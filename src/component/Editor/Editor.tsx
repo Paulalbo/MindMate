@@ -33,9 +33,11 @@ const WysiwygEditor: React.FC<WysiwygEditorProps> = ({ selectNote }) => {
   const getSelectedNote = () => {
     const jsonData = localStorage.getItem("mindMateData");
     const storedNotes = jsonData ? JSON.parse(jsonData) : { notes: [] };
-    return storedNotes.notes.find(
-      (note: { id: string }) => note.id === selectNote
-    );
+    if (storedNotes.notes) {
+      return storedNotes.notes.find(
+        (note: { id: string }) => note.id === selectNote
+      );
+    }
   };
 
   const selectedNote = getSelectedNote();
@@ -114,7 +116,7 @@ const WysiwygEditor: React.FC<WysiwygEditorProps> = ({ selectNote }) => {
         content: contentText,
         date: new Date().toISOString(),
       };
-
+      console.log(existingData);
       existingData.notes.push(newNote);
     }
 

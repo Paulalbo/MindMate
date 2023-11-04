@@ -1,28 +1,16 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faPenToSquare,
-  faTrash,
-  faXmark,
-} from "@fortawesome/free-solid-svg-icons";
+import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 import "./style.css";
 
 interface TaskProps {
   task: any;
   onUpdate: (taskId: string, updatedTask: any) => void;
-  onToggleShow: () => void;
   onDelete: (taskId: string) => void;
-  show: boolean;
 }
 
 const statusOptions = ["Idea", "Open", "In Progress", "Done"];
 
-const Task: React.FC<TaskProps> = ({
-  task,
-  onUpdate,
-  onToggleShow,
-  onDelete,
-  show,
-}) => {
+const Task: React.FC<TaskProps> = ({ task, onUpdate, onDelete }) => {
   const handleStatusChange = (
     newEventValue: string,
     newEventDescription: string,
@@ -39,11 +27,7 @@ const Task: React.FC<TaskProps> = ({
   };
 
   return (
-    <div
-      className={
-        show ? "tasklist__item tasklist__item--show" : "tasklist__item"
-      }
-    >
+    <div className="tasklist__item">
       <p className="tasklist__title">
         <input
           type="text"
@@ -114,12 +98,8 @@ const Task: React.FC<TaskProps> = ({
       >
         <FontAwesomeIcon icon={faTrash} />
       </button>
-      <button className="button tasklist__button" onClick={onToggleShow}>
-        {show ? (
-          <FontAwesomeIcon icon={faXmark} />
-        ) : (
-          <FontAwesomeIcon icon={faPenToSquare} />
-        )}
+      <button className="button tasklist__button">
+        <FontAwesomeIcon icon={faPenToSquare} />
       </button>
     </div>
   );
