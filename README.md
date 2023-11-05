@@ -1,6 +1,11 @@
 # MindMate - react project
 
-![alt text](https://github.com/Paulalbo/MindMate/blob/main/src/assets/logo.svg?raw=true)
+<div align="center">
+   </br>
+   </br>
+<img src="https://github.com/Paulalbo/MindMate/blob/main/src/assets/logo.svg" width="300">
+   </br>
+</div>
 
 ## Why
 
