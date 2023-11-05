@@ -29,11 +29,14 @@ const TaskList = () => {
 
     setTasks((prevTasks: any) => [...prevTasks, newTask]);
 
-    // Update localStorage with the new data.
-    localStorage.setItem(
-      "mindMateData",
-      JSON.stringify({ tasks: [...tasks, newTask] })
-    );
+    // Update only the "tasks" part of the JSON data.
+    const updatedData = {
+      ...initialData,
+      tasks: [...initialData.tasks, newTask],
+    };
+
+    // Update localStorage with the updated data.
+    localStorage.setItem("mindMateData", JSON.stringify(updatedData));
   };
 
   const handleTaskUpdate = (taskId: any, updatedTask: any) => {
@@ -42,11 +45,14 @@ const TaskList = () => {
     );
     setTasks(updatedTasks);
 
+    // Update only the "tasks" part of the JSON data.
+    const updatedData = {
+      ...initialData,
+      tasks: updatedTasks,
+    };
+
     // Update localStorage with the updated data.
-    localStorage.setItem(
-      "mindMateData",
-      JSON.stringify({ tasks: updatedTasks })
-    );
+    localStorage.setItem("mindMateData", JSON.stringify(updatedData));
   };
 
   const handleDeleteTask = (taskId: any) => {
@@ -55,16 +61,25 @@ const TaskList = () => {
     );
     setTasks(updatedTasks);
 
+    // Update only the "tasks" part of the JSON data.
+    const updatedData = {
+      ...initialData,
+      tasks: updatedTasks,
+    };
+
     // Update localStorage with the updated data.
-    localStorage.setItem(
-      "mindMateData",
-      JSON.stringify({ tasks: updatedTasks })
-    );
+    localStorage.setItem("mindMateData", JSON.stringify(updatedData));
   };
 
   // Use useEffect to update localStorage whenever tasks change.
   useEffect(() => {
-    localStorage.setItem("mindMateData", JSON.stringify({ tasks }));
+    // Update only the "tasks" part of the JSON data.
+    const updatedData = {
+      ...initialData,
+      tasks,
+    };
+
+    localStorage.setItem("mindMateData", JSON.stringify(updatedData));
   }, [tasks]);
 
   return (
