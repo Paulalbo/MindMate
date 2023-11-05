@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useDropzone, FileWithPath } from "react-dropzone";
 
 interface DropZoneProps {
-  setJsonData: (data: any) => void; // Change 'any' to the actual type you expect
+  setJsonData: (data: any) => void;
 }
 
 const DropZone: React.FC<DropZoneProps> = ({ setJsonData }) => {
