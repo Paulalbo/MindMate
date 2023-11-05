@@ -1,4 +1,4 @@
-# MindMate - outsource your mind and rest (or at least try it with this thing)
+# MindMate - react project
 
 ## Why
 
