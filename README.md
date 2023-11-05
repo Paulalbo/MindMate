@@ -1,5 +1,7 @@
 # MindMate - react project
 
+![alt text](https://github.com/Paulalbo/MindMate/blob/main/src/assets/logo.svg?raw=true)
+
 ## Why
 
 It's a simple test project to learn React, try a few libraries, npm packages, and create a tool for my daily stuff so I don't forget anything.
@@ -60,7 +62,7 @@ It's a simple task manager where you can create notes and tasks (more to come). 
 }
 ```
 
-- you can export your data with a simple button click as file `mind-mate-data-dd-mm-yyy-hh-mm` for example export on 5th November 2023 at 11:10 am will be named `mind-mate-data-05-11-2023-11-10` and import it again when you want to continue working ... or lived it saved in the browser.
+- you can export your data with a simple button click as file `mind-mate-data-dd-mm-yyy-hh-mm` for example export on 5th November 2023 at 11:10 am will be named `mind-mate-data-05-11-2023-11-10` and import it again when you want to continue working ... or let it saved in the browser.
 
 ## Future steps - upcoming changes
 
