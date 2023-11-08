@@ -11,6 +11,8 @@
 
 It's a simple test project to learn React, try a few libraries, npm packages, and create a tool for my daily stuff so I don't forget anything.
 
+My thoughts for not using a DB and choosing the local storage for now ... I simply want to avoid using an unnecessary login system, because I'm planning to restructure it to a desktop application which should also work without an internet connection.
+
 ## What it does
 
 It's a simple task manager where you can create notes and tasks (more to come). It works locally and saves your data in the local storage of your browser. To make sure you don't lose your data, you are able to export and import your data as often as you like.
