@@ -1,5 +1,49 @@
 .tasklist {
   padding: 25px;
+  position: relative;
+}
+
+.tasklist__modal {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+}
+
+.tasklist__modal::before {
+  content: "";
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  background: #00000054;
+  z-index: 2;
+}
+
+.tasklist__modal-form {
+  height: 100%;
+  width: 33vw;
+  padding: 20px;
+  z-index: 3;
+  background: #fff;
+  position: fixed;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.tasklist__modal-close {
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .tasklist__container {

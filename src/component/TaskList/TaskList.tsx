@@ -13,6 +13,18 @@ const TaskList = () => {
 
   const [tasks, setTasks] = useState(initialData.tasks);
 
+  let currentTaskID = new URLSearchParams(window.location.search).get("task");
+  const getSelectedTask = () => {
+    const jsonData = localStorage.getItem("mindMateData");
+    const storedTasks = jsonData ? JSON.parse(jsonData) : { tasks: [] };
+    if (storedTasks.tasks) {
+      return storedTasks.tasks.find(
+        (task: { id: string }) => task.id === currentTaskID
+      );
+    }
+  };
+  const selectedTask = getSelectedTask();
+
   const handleAddTask = () => {
     const currentDate = new Date();
     const formattedDate = `${currentDate.getFullYear()}-${String(
@@ -37,6 +49,7 @@ const TaskList = () => {
 
     // Update localStorage with the updated data.
     localStorage.setItem("mindMateData", JSON.stringify(updatedData));
+    window.location.href = "?task=" + newTask.id;
   };
 
   const handleTaskUpdate = (taskId: any, updatedTask: any) => {
@@ -71,6 +84,10 @@ const TaskList = () => {
     localStorage.setItem("mindMateData", JSON.stringify(updatedData));
   };
 
+  const closeModal = () => {
+    window.location.href = "./task-page";
+  };
+
   // Use useEffect to update localStorage whenever tasks change.
   useEffect(() => {
     // Update only the "tasks" part of the JSON data.
@@ -84,6 +101,27 @@ const TaskList = () => {
 
   return (
     <div className="tasklist">
+      {selectedTask && (
+        <div className="tasklist__modal">
+          <div className="tasklist__modal-form">
+            <button className="tasklist__modal-close" onClick={closeModal}>
+              X
+            </button>
+            <input type="text" value={selectedTask.event}></input>
+            <div className="tasklist__modal-details">
+              <select value={selectedTask.status}>
+                {statusOptions.map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </select>
+              <input type="date" value={selectedTask.duedate}></input>
+            </div>
+            <textarea value={selectedTask.description}></textarea>
+          </div>
+        </div>
+      )}
       {statusOptions.map((status) => (
         <div key={status} className={`tasklist--${status.toLowerCase()}`}>
           <h2>{status}</h2>

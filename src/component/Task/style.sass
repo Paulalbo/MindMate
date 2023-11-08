@@ -1,5 +1,34 @@
 .tasklist
     padding: 25px
+    position: relative
+    &__modal
+        position: fixed
+        z-index: 1
+        left: 0
+        top: 0
+        &::before 
+            content: ""
+            width: 100vw
+            height: 100vh
+            position: absolute
+            background: #00000054
+            z-index: 2
+        &-form
+            height: 100%
+            width: 33vw
+            padding: 20px
+            z-index: 3
+            background: #fff
+            position: fixed
+            display: flex
+            justify-content: center
+            align-content: center
+            flex-direction: column
+        &-close
+            position: absolute
+            top: 0
+            right: 0
+
     &__container
         display: flex
         flex-direction: column
