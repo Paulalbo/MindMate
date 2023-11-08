@@ -1,3 +1,43 @@
+@-webkit-keyframes slideInFromLeft {
+  0% {
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .tasklist {
   padding: 25px;
   position: relative;
@@ -17,11 +57,13 @@
   position: absolute;
   background: #00000054;
   z-index: 2;
+  -webkit-animation: .2s ease-out 0s 1 fadeIn;
+          animation: .2s ease-out 0s 1 fadeIn;
 }
 
 .tasklist__modal-form {
   height: 100%;
-  width: 33vw;
+  width: 50vw;
   padding: 20px;
   z-index: 3;
   background: #fff;
@@ -38,6 +80,8 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-animation: .5s ease-out 0s 1 slideInFromLeft;
+          animation: .5s ease-out 0s 1 slideInFromLeft;
 }
 
 .tasklist__modal-close {
