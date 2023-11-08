@@ -98,7 +98,12 @@ const Task: React.FC<TaskProps> = ({ task, onUpdate, onDelete }) => {
       >
         <FontAwesomeIcon icon={faTrash} />
       </button>
-      <button className="button tasklist__button">
+      <button
+        className="button tasklist__button"
+        onClick={() => {
+          window.location.href = `?task=${task.id}`;
+        }}
+      >
         <FontAwesomeIcon icon={faPenToSquare} />
       </button>
     </div>
