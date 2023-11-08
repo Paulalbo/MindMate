@@ -1,10 +1,17 @@
 # MindMate - react project
 
-![alt text](https://github.com/Paulalbo/MindMate/blob/main/src/assets/logo.svg?raw=true)
+<div align="center">
+   </br>
+   </br>
+<img src="https://github.com/Paulalbo/MindMate/blob/main/src/assets/logo.svg" width="300">
+   </br>
+</div>
 
 ## Why
 
 It's a simple test project to learn React, try a few libraries, npm packages, and create a tool for my daily stuff so I don't forget anything.
+
+My thoughts for not using a DB and choosing the local storage for now ... I simply want to avoid using an unnecessary login system, because I'm planning to restructure it to a desktop application which should also work without an internet connection.
 
 ## What it does
 
