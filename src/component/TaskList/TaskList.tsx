@@ -104,7 +104,10 @@ const TaskList = () => {
       {selectedTask && (
         <div className="tasklist__modal">
           <div className="tasklist__modal-form">
-            <button className="tasklist__modal-close" onClick={closeModal}>
+            <button
+              className="button tasklist__modal-close"
+              onClick={closeModal}
+            >
               X
             </button>
             <input type="text" value={selectedTask.event}></input>
