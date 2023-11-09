@@ -114,40 +114,13 @@ const TaskList = () => {
             >
               X
             </button>
-            <label htmlFor="task-modal-title">
-              <FontAwesomeIcon icon={faPen} /> Task Name
-            </label>
-            <input
-              id="task-modal-title"
-              className="tasklist__modal-title"
-              type="text"
-              value={selectedTask.event}
-            ></input>
-            <label htmlFor="task-modal-description">
-              <FontAwesomeIcon icon={faAlignJustify} /> Description
-            </label>
-            <textarea
-              id="task-modal-description"
-              className="tasklist__modal-description"
-              value={selectedTask.description}
-            ></textarea>
-            <div className="tasklist__modal-details">
-              <select
-                className="tasklist__modal-status"
-                value={selectedTask.status}
-              >
-                {statusOptions.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </select>
-              <input
-                className="tasklist__modal-date"
-                type="date"
-                value={selectedTask.duedate}
-              ></input>
-            </div>
+            <Task
+              key={selectedTask.id}
+              task={selectedTask}
+              option="modal"
+              onUpdate={handleTaskUpdate}
+              onDelete={handleDeleteTask}
+            />
           </div>
         </div>
       )}
