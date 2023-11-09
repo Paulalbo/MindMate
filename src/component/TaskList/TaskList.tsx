@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSquarePlus } from "@fortawesome/free-solid-svg-icons";
+import {
+  faSquarePlus,
+  faAlignJustify,
+  faPen,
+} from "@fortawesome/free-solid-svg-icons";
 
 import Task from "../Task/Task";
 
@@ -110,18 +114,40 @@ const TaskList = () => {
             >
               X
             </button>
-            <input type="text" value={selectedTask.event}></input>
+            <label htmlFor="task-modal-title">
+              <FontAwesomeIcon icon={faPen} /> Task Name
+            </label>
+            <input
+              id="task-modal-title"
+              className="tasklist__modal-title"
+              type="text"
+              value={selectedTask.event}
+            ></input>
+            <label htmlFor="task-modal-description">
+              <FontAwesomeIcon icon={faAlignJustify} /> Description
+            </label>
+            <textarea
+              id="task-modal-description"
+              className="tasklist__modal-description"
+              value={selectedTask.description}
+            ></textarea>
             <div className="tasklist__modal-details">
-              <select value={selectedTask.status}>
+              <select
+                className="tasklist__modal-status"
+                value={selectedTask.status}
+              >
                 {statusOptions.map((option) => (
                   <option key={option} value={option}>
                     {option}
                   </option>
                 ))}
               </select>
-              <input type="date" value={selectedTask.duedate}></input>
+              <input
+                className="tasklist__modal-date"
+                type="date"
+                value={selectedTask.duedate}
+              ></input>
             </div>
-            <textarea value={selectedTask.description}></textarea>
           </div>
         </div>
       )}
