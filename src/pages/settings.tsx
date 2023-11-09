@@ -52,6 +52,9 @@ const Settings = () => {
         </>
       )}
       <JsonExport data={storedData} />
+      {
+        "Incoming settings: color themes, Live preview of current JSON data, encrypt option, add E-Mail for missed calender events or duedate tasks"
+      }
     </>
   );
 };
