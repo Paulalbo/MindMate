@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faSquarePlus,
-  faAlignJustify,
-  faPen,
-} from "@fortawesome/free-solid-svg-icons";
+import { faSquarePlus } from "@fortawesome/free-solid-svg-icons";
 
 import Task from "../Task/Task";
 
@@ -117,7 +113,7 @@ const TaskList = () => {
             <Task
               key={selectedTask.id}
               task={selectedTask}
-              option="modal"
+              modal={true}
               onUpdate={handleTaskUpdate}
               onDelete={handleDeleteTask}
             />
