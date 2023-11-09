@@ -77,3 +77,7 @@ It's a simple task manager where you can create notes and tasks (more to come). 
 - Clean up and structure it better because it's my first React project, and there is a lot of mess inside here, but hey, it works.
 - Add additional features like a calendar, goal saver (a simple thing to save big picture goals and divide them into smaller tasks), alerts in case you are missing the due date of tasks, be able to save images in notes/tasks, ...
 - Host it somewhere or make it able to be downloadable
+
+## test server
+
+can be checked here --> mindmate-72d08.web.app/
