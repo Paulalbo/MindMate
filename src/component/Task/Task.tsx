@@ -1,17 +1,22 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
+import {
+  faPenToSquare,
+  faTrash,
+  faAlignJustify,
+  faPen,
+} from "@fortawesome/free-solid-svg-icons";
 import "./style.css";
 
 interface TaskProps {
   task: any;
-  option?: string;
+  modal?: boolean;
   onUpdate: (taskId: string, updatedTask: any) => void;
   onDelete: (taskId: string) => void;
 }
 
 const statusOptions = ["Idea", "Open", "In Progress", "Done"];
 
-const Task: React.FC<TaskProps> = ({ task, option, onUpdate, onDelete }) => {
+const Task: React.FC<TaskProps> = ({ task, modal, onUpdate, onDelete }) => {
   const handleStatusChange = (
     newEventValue: string,
     newEventDescription: string,
@@ -28,8 +33,16 @@ const Task: React.FC<TaskProps> = ({ task, option, onUpdate, onDelete }) => {
   };
 
   return (
-    <div className={`tasklist__item tasklist__item--${option}`}>
-      <p className="tasklist__title">
+    <div
+      className={`tasklist__item ` + (modal ? "tasklist__item--modal" : modal)}
+    >
+      <div className="tasklist__title">
+        <label
+          className={modal ? "" : "visually-hidden"}
+          htmlFor="task-modal-title"
+        >
+          <FontAwesomeIcon icon={faPen} /> Task Name
+        </label>
         <input
           type="text"
           value={task.event}
@@ -42,7 +55,7 @@ const Task: React.FC<TaskProps> = ({ task, option, onUpdate, onDelete }) => {
             )
           }
         />
-      </p>
+      </div>
       <div className="tasklist__details">
         <p className="tasklist__duedate">
           <label>Due date: </label>
@@ -80,33 +93,44 @@ const Task: React.FC<TaskProps> = ({ task, option, onUpdate, onDelete }) => {
           </select>
         </p>
       </div>
-      <p className="tasklist__description">
-        <textarea
-          value={task.description}
-          onChange={(e) =>
-            handleStatusChange(
-              task.event,
-              e.target.value,
-              task.status,
-              task.duedate
-            )
-          }
-        ></textarea>
-      </p>
-      <button
-        className="button tasklist__button tasklist__button--delete"
-        onClick={() => onDelete(task.id)}
-      >
-        <FontAwesomeIcon icon={faTrash} />
-      </button>
-      <button
-        className="button tasklist__button"
-        onClick={() => {
-          window.location.href = `?task=${task.id}`;
-        }}
-      >
-        <FontAwesomeIcon icon={faPenToSquare} />
-      </button>
+      {modal && (
+        <>
+          <label htmlFor="task-modal-description">
+            <FontAwesomeIcon icon={faAlignJustify} /> Description
+          </label>
+          <textarea
+            id="task-modal-description"
+            className="tasklist__description"
+            value={task.description}
+            onChange={(e) =>
+              handleStatusChange(
+                task.event,
+                e.target.value,
+                task.status,
+                task.duedate
+              )
+            }
+          ></textarea>
+        </>
+      )}
+      {!modal && (
+        <>
+          <button
+            className="button tasklist__button tasklist__button--delete"
+            onClick={() => onDelete(task.id)}
+          >
+            <FontAwesomeIcon icon={faTrash} />
+          </button>
+          <button
+            className="button tasklist__button"
+            onClick={() => {
+              window.location.href = `?task=${task.id}`;
+            }}
+          >
+            <FontAwesomeIcon icon={faPenToSquare} />
+          </button>
+        </>
+      )}
     </div>
   );
 };
