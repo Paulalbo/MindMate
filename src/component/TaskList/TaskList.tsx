@@ -122,7 +122,8 @@ const TaskList = () => {
       )}
       {statusOptions.map((status) => (
         <div key={status} className={`tasklist--${status.toLowerCase()}`}>
-          <h2>{status}</h2>
+          {tasks.filter((task: { status: string }) => task.status === status)
+            .length > 0 && <h2>{status}</h2>}
           {tasks &&
             tasks
               .filter((task: { status: string }) => task.status === status)
