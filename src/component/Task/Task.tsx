@@ -4,13 +4,14 @@ import "./style.css";
 
 interface TaskProps {
   task: any;
+  option?: string;
   onUpdate: (taskId: string, updatedTask: any) => void;
   onDelete: (taskId: string) => void;
 }
 
 const statusOptions = ["Idea", "Open", "In Progress", "Done"];
 
-const Task: React.FC<TaskProps> = ({ task, onUpdate, onDelete }) => {
+const Task: React.FC<TaskProps> = ({ task, option, onUpdate, onDelete }) => {
   const handleStatusChange = (
     newEventValue: string,
     newEventDescription: string,
@@ -27,7 +28,7 @@ const Task: React.FC<TaskProps> = ({ task, onUpdate, onDelete }) => {
   };
 
   return (
-    <div className="tasklist__item">
+    <div className={`tasklist__item tasklist__item--${option}`}>
       <p className="tasklist__title">
         <input
           type="text"
