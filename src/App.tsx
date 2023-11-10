@@ -8,7 +8,7 @@ import Header from "./component/HeaderComponent/Header";
 // Pages
 
 import Calender from "./pages/calender";
-import LifeGoals from "./pages/life-goals";
+import Reminder from "./pages/Reminder";
 import Notes from "./pages/notes";
 import TaskPage from "./pages/task-page";
 import Settings from "./pages/settings";
@@ -24,7 +24,7 @@ function App() {
             <Route path="/" element={<Settings />} />
             <Route path="/task-page" element={<TaskPage />} />
             <Route path="/notes" element={<Notes />} />
-            <Route path="/life-goals" element={<LifeGoals />} />
+            <Route path="/reminder" element={<Reminder />} />
             <Route path="/calender" element={<Calender />} />
             <Route path="/settings" element={<Settings />} />
           </Routes>
