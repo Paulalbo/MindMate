@@ -40,9 +40,18 @@ const MailButton: React.FC<MailButtonProps> = ({ title, data }) => {
   }
 
   return (
-    <button className="button" onClick={sendEmail}>
-      Send as E-Mail
-    </button>
+    <>
+      {storedEmail && storedName ? (
+        <button className="button" onClick={sendEmail}>
+          Send as E-Mail
+        </button>
+      ) : (
+        <p>
+          Please add your Email and Name if you want to use note as E-Mail
+          feature
+        </p>
+      )}
+    </>
   );
 };
 
