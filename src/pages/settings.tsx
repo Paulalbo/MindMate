@@ -6,8 +6,10 @@ import JsonExport from "../component/JsonExport/JsonExport";
 const Settings = () => {
   const [jsonData, setJsonData] = useState(null);
   let mindMateData = localStorage.getItem("mindMateData");
+  let mindMateDataPreview = mindMateData
+    ? JSON.stringify(JSON.parse(mindMateData), null, 2)
+    : "no JSON to preview";
   const storedData = mindMateData ? JSON.parse(mindMateData) : "";
-  console.log(jsonData);
 
   const handleRemoveFromLocalStorage = () => {
     localStorage.removeItem("mindMateData");
@@ -52,6 +54,10 @@ const Settings = () => {
         </>
       )}
       <JsonExport data={storedData} />
+      <div className="jsonPreview__container">
+        <h3>Json Data Preview</h3>
+        <pre className="jsonPreview__data">{mindMateDataPreview}</pre>
+      </div>
     </>
   );
 };
