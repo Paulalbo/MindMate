@@ -119,6 +119,8 @@ const WysiwygEditor: React.FC<WysiwygEditorProps> = ({ selectNote }) => {
       };
       console.log(existingData);
       existingData.notes.push(newNote);
+      localStorage.setItem("mindMateData", JSON.stringify(existingData));
+      window.location.href = `?note=${newNote.id}`;
     }
 
     localStorage.setItem("mindMateData", JSON.stringify(existingData));
@@ -203,10 +205,12 @@ const WysiwygEditor: React.FC<WysiwygEditorProps> = ({ selectNote }) => {
               editorState={modalEditorContent}
               onChange={setModalEditorContent}
             />
-            <MailButton
-              title={selectedNote.title}
-              data={selectedNote.content}
-            />
+            {selectedNote && (
+              <MailButton
+                title={selectedNote.title}
+                data={selectedNote.content}
+              />
+            )}
           </div>
         </div>
       )}
