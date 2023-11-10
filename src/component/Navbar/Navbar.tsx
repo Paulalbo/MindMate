@@ -25,10 +25,10 @@ function Navbar() {
             Notes
           </Link>
         </li>
-        <li className="navbar__item navbar__item--life-goals">
+        <li className="navbar__item navbar__item--reminder">
           <FontAwesomeIcon icon={faAward} />
-          <Link className="navbar__link" to="/life-goals">
-            Life Goals
+          <Link className="navbar__link" to="/reminder">
+            Reminder
           </Link>
         </li>
         <li className="navbar__item navbar__item--calender">

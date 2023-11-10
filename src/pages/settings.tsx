@@ -17,12 +17,16 @@ const Settings = () => {
     setJsonData(null);
   };
   const [name, setName] = useState(storedData ? storedData.name : "");
+  const [email, setEmail] = useState(storedData ? storedData.email : "");
   const handleNameChange = (e: { target: { value: any } }) => {
     setName(e.target.value);
   };
-  const saveName = () => {
+  const handleEmailChange = (e: { target: { value: any } }) => {
+    setEmail(e.target.value);
+  };
+  const saveSettings = () => {
     // Create a new object with the updated name and the existing data
-    const updatedData = { ...storedData, name };
+    const updatedData = { ...storedData, name, email };
 
     // Store the updated data in localStorage
     localStorage.setItem("mindMateData", JSON.stringify(updatedData));
@@ -31,15 +35,26 @@ const Settings = () => {
 
   return (
     <>
-      <div>
-        <label>Name: </label>
-        <input
-          className="input"
-          type="text"
-          value={name}
-          onChange={handleNameChange}
-        ></input>
-        <button className="button" onClick={saveName}>
+      <div className="settings">
+        <div>
+          <label>Name: </label>
+          <input
+            className="input"
+            type="text"
+            value={name}
+            onChange={handleNameChange}
+          ></input>
+        </div>
+        <div>
+          <label>E-Mail: </label>
+          <input
+            className="input"
+            type="text"
+            value={email}
+            onChange={handleEmailChange}
+          ></input>
+        </div>
+        <button className="button" onClick={saveSettings}>
           save
         </button>
       </div>

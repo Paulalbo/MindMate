@@ -11,6 +11,7 @@ import {
   faStrikethrough,
   faHighlighter,
 } from "@fortawesome/free-solid-svg-icons";
+import MailButton from "../Mail/Mail";
 
 interface WysiwygEditorProps {
   selectNote: string;
@@ -201,6 +202,10 @@ const WysiwygEditor: React.FC<WysiwygEditorProps> = ({ selectNote }) => {
               customStyleMap={styleMap}
               editorState={modalEditorContent}
               onChange={setModalEditorContent}
+            />
+            <MailButton
+              title={selectedNote.title}
+              data={selectedNote.content}
             />
           </div>
         </div>
