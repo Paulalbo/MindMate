@@ -10,6 +10,7 @@ const Settings = () => {
     ? JSON.stringify(JSON.parse(mindMateData), null, 2)
     : "no JSON to preview";
   const storedData = mindMateData ? JSON.parse(mindMateData) : "";
+  console.log(jsonData);
 
   const handleRemoveFromLocalStorage = () => {
     localStorage.removeItem("mindMateData");
