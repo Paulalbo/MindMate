@@ -60,7 +60,9 @@ const Notes = () => {
 
   return (
     <div>
-      <h1>Your Notes</h1>
+      <h1>
+        <b>Your Notes</b>
+      </h1>
       {noteEditor(currentNoteID)}
       <div className="notes">
         <div className="notes__document notes__document--new">
