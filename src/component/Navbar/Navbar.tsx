@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faListCheck,
   faBookOpen,
-  faAward,
+  faClock,
   faCalendarDays,
   faScrewdriverWrench,
 } from "@fortawesome/free-solid-svg-icons";
@@ -26,7 +26,7 @@ function Navbar() {
           </Link>
         </li>
         <li className="navbar__item navbar__item--reminder">
-          <FontAwesomeIcon icon={faAward} />
+          <FontAwesomeIcon icon={faClock} />
           <Link className="navbar__link" to="/reminder">
             Reminder
           </Link>
