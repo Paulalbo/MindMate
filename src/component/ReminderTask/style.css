@@ -18,6 +18,11 @@
           box-shadow: 1px 1px 10px -6px #000000;
   width: 30%;
   padding: 35px 25px;
+  opacity: 0.5;
+}
+
+.reminder--active {
+  opacity: 1;
 }
 
 .reminder__time-left {
@@ -35,6 +40,7 @@
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   gap: 20px;
+  padding: 30px 0;
 }
 
 .reminder__icon {
@@ -50,10 +56,17 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  gap: 10px;
 }
 
 .reminder__date {
@@ -63,5 +76,6 @@
 
 .reminder__checkbox {
   margin: 15px 20px;
+  opacity: 1;
 }
 /*# sourceMappingURL=style.css.map */
