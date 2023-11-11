@@ -3,7 +3,7 @@ const Reminders = () => {
   return (
     <div>
       <h1>
-        RE <u>MIND</u> ER
+        RE<b>MIND</b>ER
       </h1>
       <p>
         coming soon, possiblity so set some alarms/reminders that will pop up at

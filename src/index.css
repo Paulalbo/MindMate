@@ -59,8 +59,12 @@ body {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  font-weight: 500;
 }
-
+h1 b {
+  font-weight: 700;
+  padding: 0 5px;
+}
 .button {
   border-radius: 8px;
   border: 1px solid transparent;
