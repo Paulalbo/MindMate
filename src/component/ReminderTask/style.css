@@ -16,8 +16,13 @@
   border-radius: 25px;
   -webkit-box-shadow: 1px 1px 10px -6px #000000;
           box-shadow: 1px 1px 10px -6px #000000;
-  max-width: 30%;
+  width: 30%;
   padding: 35px 25px;
+}
+
+.reminder__time-left {
+  font-size: 12px;
+  opacity: 0.6;
 }
 
 .reminder__wrapper {
