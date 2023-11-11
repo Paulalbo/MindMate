@@ -13,7 +13,10 @@ const ReminderTask: React.FC<ReminderTaskProps> = ({ status }) => {
   return (
     <div className="reminder">
       <FontAwesomeIcon className="reminder__icon" icon={faClock} />
-      <h3 className="reminder__heading">test dummy data, reminder title</h3>
+      <h3 className="reminder__heading">Reminder Title</h3>
+      <p className="reminder__time-left">
+        3 days 2h 5m <span>left</span>
+      </p>
       <div className="reminder__details">
         <input type="date" className="reminder__date"></input>
         <input
