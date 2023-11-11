@@ -7,23 +7,23 @@ interface ReminderTaskProps {
 }
 
 const ReminderTask: React.FC<ReminderTaskProps> = ({ status }) => {
-  //const jsonData = localStorage.getItem("mindMateData");
-  //const storedData = jsonData ? JSON.parse(jsonData) : "";
-
   return (
-    <div className="reminder">
+    <div className={`reminder ${status ? "reminder--active" : ""}`}>
       <FontAwesomeIcon className="reminder__icon" icon={faClock} />
       <h3 className="reminder__heading">Reminder Title</h3>
       <p className="reminder__time-left">
         3 days 2h 5m <span>left</span>
       </p>
       <div className="reminder__details">
-        <input type="date" className="reminder__date"></input>
-        <input
-          type="checkbox"
-          className="reminder__checkbox"
-          checked={status ? true : false}
-        ></input>
+        <input type="date" className="reminder__date" />
+        <label class="switch">
+          <input
+            type="checkbox"
+            className="reminder__checkbox"
+            checked={status ? true : false}
+          />
+          <span className="slider round"></span>
+        </label>
       </div>
     </div>
   );
