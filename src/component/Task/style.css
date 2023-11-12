@@ -43,6 +43,10 @@
   position: relative;
 }
 
+.tasklist--done .tasklist__item {
+  opacity: 0.5;
+}
+
 .tasklist__container {
   display: -webkit-box;
   display: -ms-flexbox;
