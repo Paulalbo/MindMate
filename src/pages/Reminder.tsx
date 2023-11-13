@@ -1,11 +1,10 @@
-import { useState } from "react";
+import { useState, Key } from "react";
 import ReminderTask from "../component/ReminderTask/ReminderTask";
 
 const ReminderList = () => {
   const jsonData = localStorage.getItem("mindMateData");
   const initialData = jsonData ? JSON.parse(jsonData) : { Reminders: [] };
 
-  // Ensure that initialData.Reminders is always an array
   const [reminders, setReminders] = useState(
     Array.isArray(initialData.Reminders) ? initialData.Reminders : []
   );
@@ -14,21 +13,18 @@ const ReminderList = () => {
     const newReminder = {
       id: String(Date.now()),
       title: "",
-      date: "",
       status: false,
     };
 
     setReminders((prevReminders: any) => [...prevReminders, newReminder]);
 
-    // Update only the "Reminders" part of the JSON data.
     const updatedData = {
       ...initialData,
       Reminders: Array.isArray(initialData.Reminders)
         ? [...initialData.Reminders, newReminder]
-        : [newReminder], // Initialize as an array if not present
+        : [newReminder],
     };
 
-    // Update localStorage with the updated data.
     localStorage.setItem("mindMateData", JSON.stringify(updatedData));
   };
 
@@ -38,15 +34,13 @@ const ReminderList = () => {
     );
     setReminders(updatedReminders);
 
-    // Update only the "Reminders" part of the JSON data.
     const updatedData = {
       ...initialData,
       Reminders: Array.isArray(initialData.Reminders)
         ? updatedReminders
-        : [updatedReminder], // Initialize as an array if not present
+        : [updatedReminder],
     };
 
-    // Update localStorage with the updated data.
     localStorage.setItem("mindMateData", JSON.stringify(updatedData));
   };
 
@@ -55,16 +49,13 @@ const ReminderList = () => {
       <h1>
         RE<b>MIND</b>ER
       </h1>
-      <p>
-        coming soon, possibility to set some alarms/reminders that will pop up
-        at a specific date time
-      </p>
+      <p>set yourself some reminder and take a break</p>
       <button className="button" onClick={handleAddReminder}>
         Add Reminder
       </button>
       <div className="reminder__wrapper">
         {reminders &&
-          reminders.map((reminder: { id: React.Key | null | undefined }) => (
+          reminders.map((reminder: { id: Key | null | undefined }) => (
             <ReminderTask
               key={reminder.id}
               onUpdate={handleReminderUpdate}

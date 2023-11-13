@@ -12,10 +12,14 @@ const ReminderTask: React.FC<ReminderTaskProps> = ({ reminder, onUpdate }) => {
   const [isChecked, setIsChecked] = useState<boolean | undefined>(
     reminder.status
   );
+  const [timeLeft, setTimeLeft] = useState<string>("");
 
   useEffect(() => {
     setIsChecked(reminder.status);
-  }, [reminder.status]);
+
+    // Calculate and set the time left when the component mounts
+    calculateTimeLeft(reminder.date);
+  }, [reminder.status, reminder.date]);
 
   const handleStatusChange = (
     newTitleValue: string,
@@ -30,6 +34,27 @@ const ReminderTask: React.FC<ReminderTaskProps> = ({ reminder, onUpdate }) => {
     });
   };
 
+  const calculateTimeLeft = (reminderDate: string) => {
+    const currentTime = new Date();
+    const targetTime = new Date(reminderDate);
+    const timeDifference = targetTime.getTime() - currentTime.getTime();
+
+    if (timeDifference > 0) {
+      const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor(
+        (timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
+      const minutes = Math.floor(
+        (timeDifference % (1000 * 60 * 60)) / (1000 * 60)
+      );
+      const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+      setTimeLeft(`${days} days ${hours}h ${minutes}m ${seconds}s left`);
+    } else {
+      setTimeLeft("Reminder expired");
+    }
+  };
+
   return (
     <div className={`reminder ${isChecked ? "reminder--active" : ""}`}>
       <FontAwesomeIcon className="reminder__icon" icon={faClock} />
@@ -41,9 +66,7 @@ const ReminderTask: React.FC<ReminderTaskProps> = ({ reminder, onUpdate }) => {
           handleStatusChange(e.target.value, reminder.status, reminder.date)
         }
       ></input>
-      <p className="reminder__time-left">
-        3 days 2h 5m <span>left</span>
-      </p>
+      <p className="reminder__time-left">{timeLeft}</p>
       <div className="reminder__details">
         <input
           type="datetime-local"
