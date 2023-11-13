@@ -5,26 +5,27 @@ import { faClock } from "@fortawesome/free-solid-svg-icons";
 
 interface ReminderTaskProps {
   reminder: any;
-  status: boolean | undefined;
   onUpdate: (reminderId: string, updatedReminder: any) => void;
 }
 
-const ReminderTask: React.FC<ReminderTaskProps> = ({
-  reminder,
-  status,
-  onUpdate,
-}) => {
-  const [isChecked, setIsChecked] = useState<boolean | undefined>(status);
+const ReminderTask: React.FC<ReminderTaskProps> = ({ reminder, onUpdate }) => {
+  const [isChecked, setIsChecked] = useState<boolean | undefined>(
+    reminder.status
+  );
 
   useEffect(() => {
     // This effect will run whenever the `status` prop changes
-    setIsChecked(status);
-  }, [status]);
+    setIsChecked(reminder.status);
+  }, [reminder.status]);
 
-  const handleStatusChange = (newStatusValue: boolean) => {
+  const handleStatusChange = (
+    newTitleValue: string,
+    newStatusValue: boolean
+  ) => {
     // Update the isChecked state and any other logic you might need
     onUpdate(reminder.id, {
       ...reminder,
+      title: newTitleValue,
       status: newStatusValue,
     });
   };
@@ -32,7 +33,12 @@ const ReminderTask: React.FC<ReminderTaskProps> = ({
   return (
     <div className={`reminder ${isChecked ? "reminder--active" : ""}`}>
       <FontAwesomeIcon className="reminder__icon" icon={faClock} />
-      <input className="reminder__heading" type="text"></input>
+      <input
+        className="reminder__heading"
+        type="text"
+        value={reminder.title}
+        onChange={(e) => handleStatusChange(e.target.value, reminder.status)}
+      ></input>
       <p className="reminder__time-left">
         3 days 2h 5m <span>left</span>
       </p>
@@ -43,7 +49,9 @@ const ReminderTask: React.FC<ReminderTaskProps> = ({
             type="checkbox"
             className="reminder__checkbox"
             checked={isChecked}
-            onChange={(e) => handleStatusChange(e.target.checked)}
+            onChange={(e) =>
+              handleStatusChange(reminder.title, e.target.checked)
+            }
           />
           <span className="slider round"></span>
         </label>
