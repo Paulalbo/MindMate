@@ -19,10 +19,18 @@
   opacity: 0.5;
 }
 
+.reminder .reminder__time-left {
+  opacity: 0;
+}
+
 .reminder--active {
   opacity: 1;
   -webkit-box-shadow: 1px 1px 10px -6px #000000;
           box-shadow: 1px 1px 10px -6px #000000;
+}
+
+.reminder--active .reminder__time-left {
+  opacity: 1;
 }
 
 .reminder__time-left {
