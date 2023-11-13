@@ -1,18 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./style.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
 
 interface ReminderTaskProps {
+  reminder: any;
   status: boolean | undefined;
+  onUpdate: (reminderId: string, updatedReminder: any) => void;
 }
 
-const ReminderTask: React.FC<ReminderTaskProps> = ({ status }) => {
+const ReminderTask: React.FC<ReminderTaskProps> = ({
+  reminder,
+  status,
+  onUpdate,
+}) => {
   const [isChecked, setIsChecked] = useState<boolean | undefined>(status);
 
-  const handleCheckboxChange = () => {
+  useEffect(() => {
+    // This effect will run whenever the `status` prop changes
+    setIsChecked(status);
+  }, [status]);
+
+  const handleStatusChange = (newStatusValue: boolean) => {
     // Update the isChecked state and any other logic you might need
-    setIsChecked((prevValue) => !prevValue);
+    onUpdate(reminder.id, {
+      ...reminder,
+      status: newStatusValue,
+    });
   };
 
   return (
@@ -29,7 +43,7 @@ const ReminderTask: React.FC<ReminderTaskProps> = ({ status }) => {
             type="checkbox"
             className="reminder__checkbox"
             checked={isChecked}
-            onChange={handleCheckboxChange}
+            onChange={(e) => handleStatusChange(e.target.checked)}
           />
           <span className="slider round"></span>
         </label>
