@@ -1,15 +1,20 @@
 import { useState } from "react";
 import ReminderTask from "../component/ReminderTask/ReminderTask";
+
 const ReminderList = () => {
   const jsonData = localStorage.getItem("mindMateData");
   const initialData = jsonData ? JSON.parse(jsonData) : { Reminders: [] };
 
-  const [reminders, setReminders] = useState(initialData.Reminders);
+  // Ensure that initialData.Reminders is always an array
+  const [reminders, setReminders] = useState(
+    Array.isArray(initialData.Reminders) ? initialData.Reminders : []
+  );
 
   const handleAddReminder = () => {
     const newReminder = {
       id: String(Date.now()),
       title: "",
+      date: "",
       status: false,
     };
 
@@ -18,7 +23,9 @@ const ReminderList = () => {
     // Update only the "Reminders" part of the JSON data.
     const updatedData = {
       ...initialData,
-      Reminders: [...initialData.Reminders, newReminder],
+      Reminders: Array.isArray(initialData.Reminders)
+        ? [...initialData.Reminders, newReminder]
+        : [newReminder], // Initialize as an array if not present
     };
 
     // Update localStorage with the updated data.
@@ -31,10 +38,12 @@ const ReminderList = () => {
     );
     setReminders(updatedReminders);
 
-    // Update only the "tasks" part of the JSON data.
+    // Update only the "Reminders" part of the JSON data.
     const updatedData = {
       ...initialData,
-      Reminders: updatedReminders,
+      Reminders: Array.isArray(initialData.Reminders)
+        ? updatedReminders
+        : [updatedReminder], // Initialize as an array if not present
     };
 
     // Update localStorage with the updated data.
@@ -47,10 +56,10 @@ const ReminderList = () => {
         RE<b>MIND</b>ER
       </h1>
       <p>
-        coming soon, possiblity so set some alarms/reminders that will pop up at
-        a specific date time
+        coming soon, possibility to set some alarms/reminders that will pop up
+        at a specific date time
       </p>
-      <button className="button tasklist__button" onClick={handleAddReminder}>
+      <button className="button" onClick={handleAddReminder}>
         Add Reminder
       </button>
       <div className="reminder__wrapper">
