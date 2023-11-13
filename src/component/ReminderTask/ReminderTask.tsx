@@ -14,19 +14,19 @@ const ReminderTask: React.FC<ReminderTaskProps> = ({ reminder, onUpdate }) => {
   );
 
   useEffect(() => {
-    // This effect will run whenever the `status` prop changes
     setIsChecked(reminder.status);
   }, [reminder.status]);
 
   const handleStatusChange = (
     newTitleValue: string,
-    newStatusValue: boolean
+    newStatusValue: boolean,
+    newDateValue: string
   ) => {
-    // Update the isChecked state and any other logic you might need
     onUpdate(reminder.id, {
       ...reminder,
       title: newTitleValue,
       status: newStatusValue,
+      date: newDateValue,
     });
   };
 
@@ -37,20 +37,33 @@ const ReminderTask: React.FC<ReminderTaskProps> = ({ reminder, onUpdate }) => {
         className="reminder__heading"
         type="text"
         value={reminder.title}
-        onChange={(e) => handleStatusChange(e.target.value, reminder.status)}
+        onChange={(e) =>
+          handleStatusChange(e.target.value, reminder.status, reminder.date)
+        }
       ></input>
       <p className="reminder__time-left">
         3 days 2h 5m <span>left</span>
       </p>
       <div className="reminder__details">
-        <input type="datetime-local" className="reminder__date" />
+        <input
+          type="datetime-local"
+          className="reminder__date"
+          value={reminder.date}
+          onChange={(e) => {
+            handleStatusChange(reminder.title, reminder.status, e.target.value);
+          }}
+        />
         <label className="switch">
           <input
             type="checkbox"
             className="reminder__checkbox"
             checked={isChecked}
             onChange={(e) =>
-              handleStatusChange(reminder.title, e.target.checked)
+              handleStatusChange(
+                reminder.title,
+                e.target.checked,
+                reminder.date
+              )
             }
           />
           <span className="slider round"></span>
