@@ -49,7 +49,21 @@ const ReminderTask: React.FC<ReminderTaskProps> = ({ reminder, onUpdate }) => {
       );
       const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
 
-      setTimeLeft(`${days} days ${hours}h ${minutes}m ${seconds}s left`);
+      let timeLeftString = "";
+      if (days > 0) {
+        timeLeftString += `${days} day${days !== 1 ? "s" : ""} `;
+      }
+      if (hours > 0) {
+        timeLeftString += `${hours}h `;
+      }
+      if (minutes > 0) {
+        timeLeftString += `${minutes}m `;
+      }
+      if (seconds > 0 || timeLeftString === "") {
+        timeLeftString += `${seconds}s `;
+      }
+
+      setTimeLeft(timeLeftString.trim());
     } else {
       setTimeLeft("Reminder expired");
     }
