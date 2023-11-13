@@ -55,19 +55,13 @@ const ReminderList = () => {
       </button>
       <div className="reminder__wrapper">
         {reminders &&
-          reminders.map(
-            (reminder: {
-              id: React.Key | null | undefined;
-              status: boolean;
-            }) => (
-              <ReminderTask
-                key={reminder.id}
-                status={reminder.status}
-                onUpdate={handleReminderUpdate}
-                reminder={reminder}
-              />
-            )
-          )}
+          reminders.map((reminder: { id: React.Key | null | undefined }) => (
+            <ReminderTask
+              key={reminder.id}
+              onUpdate={handleReminderUpdate}
+              reminder={reminder}
+            />
+          ))}
       </div>
     </div>
   );
