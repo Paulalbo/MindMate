@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 // components
 import Navbar from "./component/Navbar/Navbar";
 import Header from "./component/HeaderComponent/Header";
+import ReminderNotification from "./component/ReminderNotification/ReminderNotification";
 
 // Pages
 
@@ -16,6 +17,7 @@ import Settings from "./pages/settings";
 function App() {
   return (
     <>
+      <ReminderNotification />
       <Header />
       <BrowserRouter>
         <div>
