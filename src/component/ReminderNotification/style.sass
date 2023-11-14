@@ -1,7 +1,7 @@
 .notification
     background: #fafafa
     position: fixed
-    top: 0
+    top: -500px
     left: 0
     width: 100vw
     padding: 25px 0 
@@ -9,9 +9,9 @@
     justify-content: center
     box-shadow: 1px 1px 10px -6px #000000
     z-index: 10
-    display: none
+    transition: 1s ease-in-out
     &.visible
-        display: block
+        top: 0
     &__close
         position: absolute
         top: 15px
@@ -19,4 +19,6 @@
         font-size: 20px
         background: inherit 
         border: unset
+        &:hover
+            cursor: pointer
     &--reminder
