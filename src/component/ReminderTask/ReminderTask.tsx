@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from "react";
 import "./style.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClock } from "@fortawesome/free-solid-svg-icons";
+import { faClock, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 interface ReminderTaskProps {
   reminder: any;
   onUpdate: (reminderId: string, updatedReminder: any) => void;
+  onDelete: (reminderId: string) => void;
 }
 
-const ReminderTask: React.FC<ReminderTaskProps> = ({ reminder, onUpdate }) => {
+const ReminderTask: React.FC<ReminderTaskProps> = ({
+  reminder,
+  onUpdate,
+  onDelete,
+}) => {
   const [isChecked, setIsChecked] = useState<boolean | undefined>(
     reminder.status
   );
@@ -81,6 +86,12 @@ const ReminderTask: React.FC<ReminderTaskProps> = ({ reminder, onUpdate }) => {
   return (
     <div className={`reminder ${isChecked ? "reminder--active" : ""}`}>
       <FontAwesomeIcon className="reminder__icon" icon={faClock} />
+      <button
+        className="button reminder__button reminder__button--delete"
+        onClick={() => onDelete(reminder.id)}
+      >
+        <FontAwesomeIcon icon={faTrash} />
+      </button>
       <input
         className="reminder__heading"
         type="text"

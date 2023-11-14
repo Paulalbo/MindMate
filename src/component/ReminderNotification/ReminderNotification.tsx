@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./style.css";
@@ -17,11 +17,11 @@ const ReminderNotification = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       checkReminders();
-    }, 1000);
+    }, 10000);
 
     // Cleanup the interval when the component is unmounted
     return () => clearInterval(interval);
-  }, []); // Run this effect only once after the initial render
+  }, [notificationVisible, notificationMessage]);
 
   const checkReminders = () => {
     // Check for past or current reminders and show notifications
@@ -49,10 +49,10 @@ const ReminderNotification = () => {
     setNotificationMessage("");
   };
 
-  const showNotification = (message: string) => {
+  const showNotification = useCallback((message: string) => {
     setNotificationVisible(true);
     setNotificationMessage(message);
-  };
+  }, []);
 
   const updateReminderStatus = (id: string) => {
     // Update the status of the reminder to false
