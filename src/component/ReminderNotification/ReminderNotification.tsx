@@ -17,7 +17,7 @@ const ReminderNotification = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       checkReminders();
-    }, 60000);
+    }, 10000);
 
     // Cleanup the interval when the component is unmounted
     return () => clearInterval(interval);
