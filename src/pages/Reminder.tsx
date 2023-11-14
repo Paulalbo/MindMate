@@ -28,6 +28,22 @@ const ReminderList = () => {
     localStorage.setItem("mindMateData", JSON.stringify(updatedData));
   };
 
+  const handleReminderDelete = (reminderId: any) => {
+    const updatedReminders = reminders.filter(
+      (reminder: { id: any }) => reminder.id !== reminderId
+    );
+    setReminders(updatedReminders);
+
+    // Update only the "tasks" part of the JSON data.
+    const updatedData = {
+      ...initialData,
+      Reminders: updatedReminders,
+    };
+
+    // Update localStorage with the updated data.
+    localStorage.setItem("mindMateData", JSON.stringify(updatedData));
+  };
+
   const handleReminderUpdate = (reminderId: any, updatedReminder: any) => {
     const updatedReminders = reminders.map((reminder: { id: any }) =>
       reminder.id === reminderId ? updatedReminder : reminder
@@ -60,6 +76,7 @@ const ReminderList = () => {
               key={reminder.id}
               onUpdate={handleReminderUpdate}
               reminder={reminder}
+              onDelete={handleReminderDelete}
             />
           ))}
       </div>
