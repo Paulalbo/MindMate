@@ -1,1 +1,32 @@
-/* No CSS *//*# sourceMappingURL=style.css.map */
+.notification {
+  background: #fafafa;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  padding: 25px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-shadow: 1px 1px 10px -6px #000000;
+          box-shadow: 1px 1px 10px -6px #000000;
+  z-index: 10;
+  display: none;
+}
+
+.notification.visible {
+  display: block;
+}
+
+.notification__close {
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  font-size: 20px;
+  background: inherit;
+  border: unset;
+}
+/*# sourceMappingURL=style.css.map */

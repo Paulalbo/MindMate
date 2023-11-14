@@ -34,6 +34,7 @@ const ReminderTask: React.FC<ReminderTaskProps> = ({ reminder, onUpdate }) => {
     });
   };
 
+  // calculate time left
   const calculateTimeLeft = (reminderDate: string) => {
     const currentTime = new Date();
     const targetTime = new Date(reminderDate);
