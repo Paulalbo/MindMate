@@ -19,6 +19,14 @@ const ReminderTask: React.FC<ReminderTaskProps> = ({ reminder, onUpdate }) => {
 
     // Calculate and set the time left when the component mounts
     calculateTimeLeft(reminder.date);
+
+    // Set up an interval to update the time left every second (you can adjust the interval as needed)
+    const interval = setInterval(() => {
+      calculateTimeLeft(reminder.date);
+    }, 1000);
+
+    // Cleanup the interval when the component is unmounted
+    return () => clearInterval(interval);
   }, [reminder.status, reminder.date]);
 
   const handleStatusChange = (
