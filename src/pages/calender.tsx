@@ -28,7 +28,7 @@ const Calender = () => {
   return (
     <div className="calender">
       {dateArray.map((date, index) => (
-        <CalenderDay key={index} date={date} today={dayStatus(date)} />
+        <CalenderDay key={index} date={date} statusCheck={dayStatus(date)} />
       ))}
     </div>
   );

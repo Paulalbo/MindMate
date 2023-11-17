@@ -2,10 +2,10 @@ import "./style.css";
 
 interface CalenderDayProps {
   date: string;
-  today: string;
+  statusCheck: string;
 }
 
-const CalenderDay: React.FC<CalenderDayProps> = ({ date, today }) => {
+const CalenderDay: React.FC<CalenderDayProps> = ({ date, statusCheck }) => {
   const dayFull = new Date(date).toLocaleDateString("en-US", {
     weekday: "long",
   });
@@ -14,7 +14,7 @@ const CalenderDay: React.FC<CalenderDayProps> = ({ date, today }) => {
   });
 
   return (
-    <div className={`calender__day  calender__day--` + today}>
+    <div className={`calender__day  calender__day--` + statusCheck}>
       <div className="calender__top">
         <p className="calender__name">{dayFull}</p>
       </div>
