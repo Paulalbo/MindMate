@@ -10,6 +10,7 @@
 
 .calender__day--today .calender__inner-container {
   border-top: 5px solid #000;
+  background: #eeeeee;
 }
 
 .calender__day--past {
