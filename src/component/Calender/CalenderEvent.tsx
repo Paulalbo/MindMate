@@ -1,13 +1,25 @@
 import "./style.css";
 
-const CalenderDay = () => {
+interface CalenderDayProps {
+  date: string;
+  today: string;
+}
+
+const CalenderDay: React.FC<CalenderDayProps> = ({ date, today }) => {
+  const dayFull = new Date(date).toLocaleDateString("en-US", {
+    weekday: "long",
+  });
+  const dayNum = new Date(date).toLocaleDateString("en-US", {
+    day: "numeric",
+  });
+
   return (
-    <div className="calender__day">
+    <div className={`calender__day  calender__day--` + today}>
       <div className="calender__top">
-        <p className="calender__name">Monday</p>
+        <p className="calender__name">{dayFull}</p>
       </div>
       <div className="calender__inner-container">
-        <h2 className="calender__title">01</h2>
+        <h2 className="calender__title">{dayNum}</h2>
         <div className="calender__events">
           <div className="calender__event">
             <textarea value="termin 1"></textarea>

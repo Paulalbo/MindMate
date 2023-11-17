@@ -4,6 +4,12 @@
     max-width: 850px
     padding: 30px 20px
     gap: 15px
+    &__day
+        &--today
+            .calender__inner-container
+                border-top: 5px solid #000
+        &--past
+            opacity: .4
     &__top
         padding: 0 10px
     &__name
@@ -13,7 +19,7 @@
         text-transform: uppercase
     &__inner-container
         background: #fafafa
-        border-top: 4px solid #000
+        border-top: 4px solid #00000031
         padding: 20px 10px
     &__title
         text-align: left
