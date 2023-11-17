@@ -1,7 +1,15 @@
+import CalenderDay from "../component/Calender/CalenderEvent";
+
 const Calender = () => {
   return (
-    <div>
-      <h1>calender page</h1>
+    <div className="calender">
+      <CalenderDay />
+      <CalenderDay />
+      <CalenderDay />
+      <CalenderDay />
+      <CalenderDay />
+      <CalenderDay />
+      <CalenderDay />
     </div>
   );
 };
