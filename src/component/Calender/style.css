@@ -8,6 +8,14 @@
   gap: 15px;
 }
 
+.calender__day--today .calender__inner-container {
+  border-top: 5px solid #000;
+}
+
+.calender__day--past {
+  opacity: .4;
+}
+
 .calender__top {
   padding: 0 10px;
 }
@@ -21,7 +29,7 @@
 
 .calender__inner-container {
   background: #fafafa;
-  border-top: 4px solid #000;
+  border-top: 4px solid #00000031;
   padding: 20px 10px;
 }
 
