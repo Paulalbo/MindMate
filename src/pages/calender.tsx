@@ -1,4 +1,5 @@
 import CalenderDay from "../component/Calender/CalenderEvent";
+import CalenderAddNew from "../component/Calender/CalenderForm";
 
 const Calender = () => {
   const currentDate = new Date();
@@ -6,7 +7,7 @@ const Calender = () => {
 
   const generateDateArray = () => {
     const dateArray = [];
-    for (let i = -2; i <= 7; i++) {
+    for (let i = -3; i <= 7; i++) {
       const date = new Date();
       date.setDate(currentDate.getDate() + i);
       dateArray.push(date.toISOString().slice(0, 10)); // Format as "YYYY-MM-DD"
@@ -27,6 +28,7 @@ const Calender = () => {
 
   return (
     <div className="calender">
+      <CalenderAddNew />
       <div className="calender__wrapper">
         {dateArray.map((date, index) => (
           <CalenderDay key={index} date={date} statusCheck={dayStatus(date)} />

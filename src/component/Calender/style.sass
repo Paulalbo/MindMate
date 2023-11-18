@@ -17,8 +17,7 @@
     &__wrapper
         display: flex
         overflow-x: scroll
-        max-width: 1050px
-        padding: 75px 30px
+        padding: 30px
         width: 90vw
         gap: 15px
         position: relative
@@ -64,14 +63,13 @@
         .button
             margin: 5px
             font-size: 10px
+            background: #fafafa
             &--edit
                 position: absolute
                 top: -10px
                 margin: 0px
                 right: 0px
                 padding: 2px 5px
-            &--delete
-                background: none
     &__modal
         padding: 5px 10px
         z-index: 10
@@ -81,3 +79,23 @@
         right: -65px
         box-shadow: 1px 1px 10px -6px #000000
         border-radius: 15px
+
+    &__new-event
+        position: relative
+    &__event-form
+        box-shadow: 1px 1px 10px -6px #000000
+        padding: 25px 20px
+        position: absolute
+        background-color: #fff
+        border-radius: 15px
+        top: 110%
+        left: 50%
+        transform: translate(-50%,0)
+        display: flex
+        align-items: center
+        gap: 15px
+        z-index: 11
+        input
+            border: none
+            border-bottom: 1px solid #000
+
