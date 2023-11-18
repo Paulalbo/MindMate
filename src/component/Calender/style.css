@@ -75,6 +75,7 @@
       -ms-flex-direction: column;
           flex-direction: column;
   margin-top: 15px;
+  position: relative;
 }
 
 .calender__event textarea {
@@ -89,5 +90,44 @@
   border: none;
   font-size: 9px;
   background: none;
+}
+
+.calender__edit {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  margin-bottom: 10px;
+}
+
+.calender__edit .button {
+  margin: 5px;
+  font-size: 10px;
+}
+
+.calender__edit .button--edit {
+  position: absolute;
+  top: -10px;
+  margin: 0px;
+  right: 0px;
+  padding: 2px 5px;
+}
+
+.calender__edit .button--delete {
+  background: none;
+}
+
+.calender__modal {
+  padding: 5px 10px;
+  z-index: 10;
+  background: #fff;
+  position: absolute;
+  top: 0;
+  right: -65px;
+  -webkit-box-shadow: 1px 1px 10px -6px #000000;
+          box-shadow: 1px 1px 10px -6px #000000;
+  border-radius: 15px;
 }
 /*# sourceMappingURL=style.css.map */

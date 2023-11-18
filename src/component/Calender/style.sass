@@ -46,6 +46,7 @@
         display: flex
         flex-direction: column
         margin-top: 15px
+        position: relative
         textarea
             border: none
             font-weight: 700
@@ -56,3 +57,27 @@
             border: none
             font-size: 9px
             background: none
+    &__edit
+        display: flex
+        justify-content: flex-start
+        margin-bottom: 10px
+        .button
+            margin: 5px
+            font-size: 10px
+            &--edit
+                position: absolute
+                top: -10px
+                margin: 0px
+                right: 0px
+                padding: 2px 5px
+            &--delete
+                background: none
+    &__modal
+        padding: 5px 10px
+        z-index: 10
+        background: #fff
+        position: absolute
+        top: 0
+        right: -65px
+        box-shadow: 1px 1px 10px -6px #000000
+        border-radius: 15px
