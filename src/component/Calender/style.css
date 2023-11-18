@@ -132,8 +132,8 @@
 }
 
 .calender__event-form {
-  -webkit-box-shadow: 1px 1px 10px -6px #000000;
-          box-shadow: 1px 1px 10px -6px #000000;
+  -webkit-box-shadow: 0px 0px 20px -5px #000000;
+          box-shadow: 0px 0px 20px -5px #000000;
   padding: 25px 20px;
   position: absolute;
   background-color: #fff;
