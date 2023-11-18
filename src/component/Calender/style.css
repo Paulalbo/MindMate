@@ -1,11 +1,39 @@
 .calender {
+  position: relative;
+}
+
+.calender::before, .calender::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 50px;
+  height: 100%;
+  z-index: 10;
+  background: white;
+}
+
+.calender::before {
+  left: 0;
+  background: -webkit-gradient(linear, left top, right top, color-stop(50%, white), to(rgba(255, 255, 255, 0)));
+  background: linear-gradient(90deg, white 50%, rgba(255, 255, 255, 0) 100%);
+}
+
+.calender::after {
+  right: 0;
+  background: -webkit-gradient(linear, right top, left top, color-stop(50%, white), to(rgba(255, 255, 255, 0)));
+  background: linear-gradient(270deg, white 50%, rgba(255, 255, 255, 0) 100%);
+}
+
+.calender__wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   overflow-x: scroll;
-  max-width: 850px;
-  padding: 30px 20px;
+  max-width: 1050px;
+  padding: 75px 30px;
+  width: 90vw;
   gap: 15px;
+  position: relative;
 }
 
 .calender__day--today .calender__inner-container {
