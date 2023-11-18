@@ -1,4 +1,5 @@
-import CalenderDay from "../component/Calender/CalenderEvent";
+import { Key } from "react";
+import CalenderDay from "../component/Calender/CalenderDay";
 import CalenderAddNew from "../component/Calender/CalenderForm";
 
 const Calender = () => {
@@ -30,7 +31,7 @@ const Calender = () => {
     <div className="calender">
       <CalenderAddNew />
       <div className="calender__wrapper">
-        {dateArray.map((date, index) => (
+        {dateArray.map((date: string, index: Key | null | undefined) => (
           <CalenderDay key={index} date={date} statusCheck={dayStatus(date)} />
         ))}
       </div>
