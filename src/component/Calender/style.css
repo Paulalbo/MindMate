@@ -92,6 +92,12 @@
   margin-right: 5px;
 }
 
+.calender__event--user-event .calender__edit {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 .calender__event--task-event::before {
   content: "TASK EVENT";
   background: #000000c9;
@@ -108,6 +114,7 @@
   font-size: 12px;
   background: none;
   height: 20px;
+  width: 100%;
 }
 
 .calender__event input {
@@ -117,9 +124,7 @@
 }
 
 .calender__edit {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  display: none;
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;

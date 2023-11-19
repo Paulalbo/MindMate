@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import CalenderEvent from "./CalenderEvent";
 import "./style.css";
 
@@ -18,8 +18,12 @@ const CalenderDay: React.FC<CalenderDayProps> = ({ date, statusCheck }) => {
   const initialData = jsonData
     ? JSON.parse(jsonData)
     : { tasks: [], reminders: [] };
+
+  const [events, setEvents] = useState(initialData.events);
+
   const getTaskData = initialData.tasks;
   const getReminderData = initialData.Reminders;
+  const getEventsData = initialData.events;
   // Transform tasks into the desired format and filter out "Done" tasks
   const taskData = getTaskData
     .filter((task: { status: string }) => task.status !== "Done")
@@ -41,8 +45,7 @@ const CalenderDay: React.FC<CalenderDayProps> = ({ date, statusCheck }) => {
       title: reminder.title,
     }));
 
-  const testData = [...taskData, ...reminderData];
-  console.log(testData);
+  const testData = [...taskData, ...reminderData, ...getEventsData];
   // Filter events based on the provided date
   const filteredEvents = testData
     .filter((eventData: { eventDate: string }) => eventData.eventDate === date)
@@ -55,6 +58,22 @@ const CalenderDay: React.FC<CalenderDayProps> = ({ date, statusCheck }) => {
       return timeA - timeB;
     });
 
+  const handleEventDelete = (eventId: any) => {
+    const updatedEvents = events.filter(
+      (event: { id: any }) => event.id !== eventId
+    );
+    setEvents(updatedEvents);
+
+    // Update only the "tasks" part of the JSON data.
+    const updatedData = {
+      ...initialData,
+      events: updatedEvents,
+    };
+
+    // Update localStorage with the updated data.
+    localStorage.setItem("mindMateData", JSON.stringify(updatedData));
+  };
+
   return (
     <div className={`calender__day  calender__day--${statusCheck}`}>
       <div className="calender__top">
@@ -64,7 +83,11 @@ const CalenderDay: React.FC<CalenderDayProps> = ({ date, statusCheck }) => {
         <h2 className="calender__title">{dayNum}</h2>
         <div className="calender__events">
           {filteredEvents.map((eventData: any) => (
-            <CalenderEvent key={eventData.id} event={eventData} />
+            <CalenderEvent
+              key={eventData.id}
+              event={eventData}
+              onDelete={handleEventDelete}
+            />
           ))}
         </div>
       </div>
