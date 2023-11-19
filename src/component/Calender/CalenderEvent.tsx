@@ -38,14 +38,13 @@ const CalenderEvent: React.FC<CalenderEventProps> = ({ event }) => {
       className={`calender__event calender__event--${event.eventType}`}
       key={event.id}
     >
+      <input type="time" value={inputValue} onChange={handleInputChange} />
       <textarea
         id={event.id}
         value={textareaValue}
         onChange={handleTextareaChange}
         style={{ overflowY: "hidden", height: "auto" }}
       />
-
-      <input type="time" value={inputValue} onChange={handleInputChange} />
       <div className="calender__edit">
         <button
           className="button button--edit"

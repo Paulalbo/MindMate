@@ -44,20 +44,27 @@
         text-align: left
     &__event
         display: flex
-        flex-direction: column
+        flex-wrap: wrap
         margin-top: 15px
         position: relative
+        &::before
+            font-size: 9px
+            text-align: left
+            color: #fff
+            padding: 2px 5px
+            border-radius: 15px
+            width: fit-content
+            font-weight: 700
+            margin-right: 5px
         &--user-event
         &--task-event
             &::before
                 content: "TASK EVENT"
-                font-size: 9px
-                text-align: left
+                background: #000000c9
         &--reminder-event
             &::before
                 content: "REMINDER EVENT"
-                font-size: 9px
-                text-align: left
+                background: #ff0000c9
         textarea
             border: none
             font-weight: 700
@@ -66,7 +73,7 @@
             height: 20px
         input
             border: none
-            font-size: 9px
+            font-size: 10px
             background: none
     &__edit
         display: flex

@@ -15,11 +15,13 @@ const CalenderDay: React.FC<CalenderDayProps> = ({ date, statusCheck }) => {
     day: "numeric",
   });
   const jsonData = localStorage.getItem("mindMateData");
-  const initialData = jsonData ? JSON.parse(jsonData) : { tasks: [] };
+  const initialData = jsonData
+    ? JSON.parse(jsonData)
+    : { tasks: [], reminders: [] };
   const getTaskData = initialData.tasks;
-
+  const getReminderData = initialData.Reminders;
   // Transform tasks into the desired format and filter out "Done" tasks
-  const testData = getTaskData
+  const taskData = getTaskData
     .filter((task: { status: string }) => task.status !== "Done")
     .map((task: { id: any; duedate: any; event: any }) => ({
       id: task.id,
@@ -29,6 +31,18 @@ const CalenderDay: React.FC<CalenderDayProps> = ({ date, statusCheck }) => {
       title: task.event,
     }));
 
+  const reminderData = getReminderData
+    .filter((reminder: { status: boolean }) => reminder.status !== false)
+    .map((reminder: { id: any; date: any; title: any }) => ({
+      id: reminder.id,
+      eventDate: reminder.date.split("T")[0],
+      time: reminder.date.split("T")[1],
+      eventType: "reminder-event",
+      title: reminder.title,
+    }));
+
+  const testData = [...taskData, ...reminderData];
+  console.log(testData);
   // Filter events based on the provided date
   const filteredEvents = testData
     .filter((eventData: { eventDate: string }) => eventData.eventDate === date)
