@@ -77,6 +77,18 @@
   position: relative;
 }
 
+.calender__event--task-event::before {
+  content: "TASK DUE DATE";
+  font-size: 9px;
+  text-align: left;
+}
+
+.calender__event--reminder-event::before {
+  content: "REMINDER EVENT";
+  font-size: 9px;
+  text-align: left;
+}
+
 .calender__event textarea {
   border: none;
   font-weight: 700;
