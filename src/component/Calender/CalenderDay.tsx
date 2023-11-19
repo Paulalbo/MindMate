@@ -14,48 +14,25 @@ const CalenderDay: React.FC<CalenderDayProps> = ({ date, statusCheck }) => {
   const dayNum = new Date(date).toLocaleDateString("en-US", {
     day: "numeric",
   });
-  const testData = [
-    {
-      id: "123",
-      eventDate: "2023-11-18",
-      time: "13:30",
-      eventType: "user-event",
-      title: "Event on 18.",
-    },
-    {
-      id: "1234",
-      eventDate: "2023-11-19",
-      time: "16:30",
-      eventType: "reminder-event",
-      title: "Event on 19.",
-    },
-    {
-      id: "234",
-      eventDate: "2023-11-20",
-      time: "16:30",
+  const jsonData = localStorage.getItem("mindMateData");
+  const initialData = jsonData ? JSON.parse(jsonData) : { tasks: [] };
+  const getTaskData = initialData.tasks;
+
+  // Transform tasks into the desired format and filter out "Done" tasks
+  const testData = getTaskData
+    .filter((task: { status: string }) => task.status !== "Done")
+    .map((task: { id: any; duedate: any; event: any }) => ({
+      id: task.id,
+      eventDate: task.duedate,
+      time: "23:00", // Adjust this as needed
       eventType: "task-event",
-      title: "Party on 20.",
-    },
-    {
-      id: "345",
-      eventDate: "2023-11-20",
-      time: "15:30",
-      eventType: "user-event",
-      title: "Thing on 20. later",
-    },
-    {
-      id: "345",
-      eventDate: "2023-11-20",
-      time: "09:30",
-      eventType: "user-event",
-      title: "date time check",
-    },
-  ];
+      title: task.event,
+    }));
 
   // Filter events based on the provided date
   const filteredEvents = testData
-    .filter((eventData) => eventData.eventDate === date)
-    .sort((a, b) => {
+    .filter((eventData: { eventDate: string }) => eventData.eventDate === date)
+    .sort((a: { time: string }, b: { time: string }) => {
       // Convert time to minutes since midnight for comparison
       const timeA =
         Number(a.time.split(":")[0]) * 60 + Number(a.time.split(":")[1]);
@@ -72,8 +49,8 @@ const CalenderDay: React.FC<CalenderDayProps> = ({ date, statusCheck }) => {
       <div className="calender__inner-container">
         <h2 className="calender__title">{dayNum}</h2>
         <div className="calender__events">
-          {filteredEvents.map((eventData) => (
-            <CalenderEvent event={eventData} />
+          {filteredEvents.map((eventData: any) => (
+            <CalenderEvent key={eventData.id} event={eventData} />
           ))}
         </div>
       </div>

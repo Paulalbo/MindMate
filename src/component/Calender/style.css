@@ -35,6 +35,10 @@
   position: relative;
 }
 
+.calender__day {
+  min-width: 200px;
+}
+
 .calender__day--today .calender__inner-container {
   border-top: 5px solid #000;
   background: #eeeeee;
@@ -78,7 +82,7 @@
 }
 
 .calender__event--task-event::before {
-  content: "TASK DUE DATE";
+  content: "TASK EVENT";
   font-size: 9px;
   text-align: left;
 }
