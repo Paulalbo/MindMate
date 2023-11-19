@@ -15,7 +15,10 @@ const CalenderEvent: React.FC<CalenderEventProps> = ({ event }) => {
   };
 
   return (
-    <div className={`calender__event ${event.type}`} key={event.id}>
+    <div
+      className={`calender__event calender__event--${event.eventType}`}
+      key={event.id}
+    >
       <textarea value={event.title} />
       <input type="time" value={event.time} />
       <div className="calender__edit">
