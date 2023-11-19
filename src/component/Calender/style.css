@@ -77,13 +77,18 @@
       flex-wrap: wrap;
   margin-top: 15px;
   position: relative;
+  background: #fff;
+  padding: 5px 5px;
+  border-radius: 15px;
+  -webkit-box-shadow: 0px 0px 6px -4px #000000;
+          box-shadow: 0px 0px 6px -4px #000000;
 }
 
 .calender__event::before {
   font-size: 9px;
   text-align: left;
   color: #fff;
-  padding: 2px 5px;
+  padding: 2px 10px;
   border-radius: 15px;
   width: -webkit-fit-content;
   width: -moz-fit-content;
@@ -115,6 +120,7 @@
   background: none;
   height: 20px;
   width: 100%;
+  margin-top: 5px;
 }
 
 .calender__event input {
@@ -139,10 +145,12 @@
 
 .calender__edit .button--edit {
   position: absolute;
-  top: -10px;
+  top: 3px;
   margin: 0px;
-  right: 0px;
+  right: 5px;
   padding: 2px 5px;
+  background: #fff;
+  border: none;
 }
 
 .calender__modal {
