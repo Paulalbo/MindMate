@@ -73,24 +73,33 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   margin-top: 15px;
   position: relative;
 }
 
-.calender__event--task-event::before {
-  content: "TASK EVENT";
+.calender__event::before {
   font-size: 9px;
   text-align: left;
+  color: #fff;
+  padding: 2px 5px;
+  border-radius: 15px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-weight: 700;
+  margin-right: 5px;
+}
+
+.calender__event--task-event::before {
+  content: "TASK EVENT";
+  background: #000000c9;
 }
 
 .calender__event--reminder-event::before {
   content: "REMINDER EVENT";
-  font-size: 9px;
-  text-align: left;
+  background: #ff0000c9;
 }
 
 .calender__event textarea {
@@ -103,7 +112,7 @@
 
 .calender__event input {
   border: none;
-  font-size: 9px;
+  font-size: 10px;
   background: none;
 }
 
