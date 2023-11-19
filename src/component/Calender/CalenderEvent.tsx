@@ -5,9 +5,10 @@ import { faEllipsis, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 interface CalenderEventProps {
   event: any;
+  onDelete: (eventId: string) => void;
 }
 
-const CalenderEvent: React.FC<CalenderEventProps> = ({ event }) => {
+const CalenderEvent: React.FC<CalenderEventProps> = ({ event, onDelete }) => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [textareaValue, setTextareaValue] = useState(event.title);
   const [inputValue, setInputValue] = useState(event.time);
@@ -54,7 +55,10 @@ const CalenderEvent: React.FC<CalenderEventProps> = ({ event }) => {
         </button>
         {isModalOpen && (
           <div className="calender__modal">
-            <button className="button button--delete">
+            <button
+              className="button button--delete"
+              onClick={() => onDelete(event.id)}
+            >
               <FontAwesomeIcon icon={faTrash} />
             </button>
           </div>
