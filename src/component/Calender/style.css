@@ -2,41 +2,37 @@
   position: relative;
 }
 
-.calender::before, .calender::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  width: 50px;
-  height: 100%;
-  z-index: 10;
-  background: white;
-}
-
-.calender::before {
-  left: 0;
-  background: -webkit-gradient(linear, left top, right top, color-stop(50%, white), to(rgba(255, 255, 255, 0)));
-  background: linear-gradient(90deg, white 50%, rgba(255, 255, 255, 0) 100%);
-}
-
-.calender::after {
-  right: 0;
-  background: -webkit-gradient(linear, right top, left top, color-stop(50%, white), to(rgba(255, 255, 255, 0)));
-  background: linear-gradient(270deg, white 50%, rgba(255, 255, 255, 0) 100%);
-}
-
 .calender__wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  overflow-x: scroll;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   padding: 30px;
-  width: 90vw;
   gap: 15px;
   position: relative;
+  overflow-x: scroll;
+  max-width: 90vw;
+}
+
+.calender__week {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
 }
 
 .calender__day {
+  width: 100%;
   min-width: 200px;
+  margin: 0 5px;
 }
 
 .calender__day--today .calender__inner-container {
@@ -63,6 +59,8 @@
   background: #fafafa;
   border-top: 4px solid #00000031;
   padding: 20px 10px;
+  min-height: 250px;
+  height: calc(100% - 50px);
 }
 
 .calender__title {
