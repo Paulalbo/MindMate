@@ -51,6 +51,7 @@ const CalenderAddNew = () => {
 
     // Close the modal after adding the event.
     setModalOpen(false);
+    window.location.reload();
   };
 
   return (
