@@ -7,7 +7,7 @@ const CalenderAddNew = () => {
   const jsonData = localStorage.getItem("mindMateData");
   const initialData = jsonData ? JSON.parse(jsonData) : { events: [] };
 
-  const [events, setEvents] = useState(initialData.events || []);
+  const [, setEvents] = useState(initialData.events || []);
   const [isModalOpen, setModalOpen] = useState(false);
   const [newEvent, setNewEvent] = useState({
     eventDate: "",

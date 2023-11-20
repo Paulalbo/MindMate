@@ -11,7 +11,9 @@ const TaskList = () => {
   const jsonData = localStorage.getItem("mindMateData");
   const initialData = jsonData ? JSON.parse(jsonData) : { tasks: [] };
 
-  const [tasks, setTasks] = useState(initialData.tasks);
+  const [tasks, setTasks] = useState(
+    Array.isArray(initialData.tasks) ? initialData.tasks : []
+  );
 
   let currentTaskID = new URLSearchParams(window.location.search).get("task");
   const getSelectedTask = () => {
