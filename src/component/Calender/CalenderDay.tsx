@@ -60,13 +60,30 @@ const CalenderDay: React.FC<CalenderDayProps> = ({ date, statusCheck }) => {
       return timeA - timeB;
     });
 
+  const handleEventUpdate = (eventId: any, updatedEvent: any) => {
+    const updatedEvents = events.map((event: { id: any }) =>
+      event.id === eventId ? updatedEvent : event
+    );
+    setEvents(updatedEvents);
+
+    const updatedData = {
+      ...initialData,
+      events: Array.isArray(initialData.events)
+        ? updatedEvents
+        : [updatedEvent],
+    };
+
+    localStorage.setItem("mindMateData", JSON.stringify(updatedData));
+    window.location.reload();
+  };
+
   const handleEventDelete = (eventId: any) => {
     const updatedEvents = events.filter(
       (event: { id: any }) => event.id !== eventId
     );
     setEvents(updatedEvents);
 
-    // Update only the "tasks" part of the JSON data.
+    // Update only the "events" part of the JSON data.
     const updatedData = {
       ...initialData,
       events: updatedEvents,
@@ -88,6 +105,7 @@ const CalenderDay: React.FC<CalenderDayProps> = ({ date, statusCheck }) => {
             <CalenderEvent
               key={eventData.id}
               event={eventData}
+              onUpdate={handleEventUpdate}
               onDelete={handleEventDelete}
             />
           ))}

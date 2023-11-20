@@ -10,23 +10,17 @@ import {
 interface CalenderEventProps {
   event: any;
   onDelete: (eventId: string) => void;
+  onUpdate: (eventId: string, updatedEvent: any) => void;
 }
 
-const CalenderEvent: React.FC<CalenderEventProps> = ({ event, onDelete }) => {
+const CalenderEvent: React.FC<CalenderEventProps> = ({
+  event,
+  onDelete,
+  onUpdate,
+}) => {
   const [isModalOpen, setModalOpen] = useState(false);
-  const [textareaValue, setTextareaValue] = useState(event.title);
-  const [inputValue, setInputValue] = useState(event.time);
-
   const handleEditButtonClick = () => {
     setModalOpen(!isModalOpen);
-  };
-
-  const handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setTextareaValue(e.target.value);
-  };
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
   };
 
   useEffect(() => {
@@ -38,12 +32,40 @@ const CalenderEvent: React.FC<CalenderEventProps> = ({ event, onDelete }) => {
     }
   }, [event.id]);
 
+  const handleStatusChange = (
+    newTitleValue: string,
+    newTimevalue: string,
+    newDateValue: string
+  ) => {
+    onUpdate(event.id, {
+      ...event,
+      title: newTitleValue,
+      time: newTimevalue,
+      eventDate: newDateValue,
+    });
+  };
+
   return (
     <div
       className={`calender__event calender__event--${event.eventType} calender__event--${event.eventStatus}`}
       key={event.id}
     >
-      <input type="time" value={inputValue} onChange={handleInputChange} />
+      <input
+        type="time"
+        value={event.time}
+        onChange={(e) =>
+          handleStatusChange(event.title, e.target.value, event.eventDate)
+        }
+      />
+      {event.eventType == "user-event" && (
+        <input
+          type="date"
+          value={event.eventDate}
+          onChange={(e) =>
+            handleStatusChange(event.title, event.time, e.target.value)
+          }
+        />
+      )}
       {event.eventType == "task-event" && (
         <a
           className="task-link"
@@ -55,8 +77,10 @@ const CalenderEvent: React.FC<CalenderEventProps> = ({ event, onDelete }) => {
       )}
       <textarea
         id={event.id}
-        value={textareaValue}
-        onChange={handleTextareaChange}
+        value={event.title}
+        onChange={(e) =>
+          handleStatusChange(e.target.value, event.time, event.eventDate)
+        }
         style={{ overflowY: "hidden", height: "auto" }}
       />
       <div className="calender__edit">
