@@ -133,6 +133,13 @@
   background: none;
 }
 
+.calender__event .task-link {
+  font-size: 10px;
+  color: #000;
+  margin-left: auto;
+  padding: 0 5px;
+}
+
 .calender__edit {
   display: none;
   -webkit-box-pack: start;

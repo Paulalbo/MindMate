@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./style.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEllipsis, faTrash } from "@fortawesome/free-solid-svg-icons";
+import {
+  faEllipsis,
+  faTrash,
+  faUpRightFromSquare,
+} from "@fortawesome/free-solid-svg-icons";
 
 interface CalenderEventProps {
   event: any;
@@ -40,6 +44,15 @@ const CalenderEvent: React.FC<CalenderEventProps> = ({ event, onDelete }) => {
       key={event.id}
     >
       <input type="time" value={inputValue} onChange={handleInputChange} />
+      {event.eventType == "task-event" && (
+        <a
+          className="task-link"
+          target="_blank"
+          href={`./task-page?task=${event.id}`}
+        >
+          <FontAwesomeIcon icon={faUpRightFromSquare} />
+        </a>
+      )}
       <textarea
         id={event.id}
         value={textareaValue}
