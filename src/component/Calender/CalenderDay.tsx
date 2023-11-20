@@ -74,7 +74,6 @@ const CalenderDay: React.FC<CalenderDayProps> = ({ date, statusCheck }) => {
     };
 
     localStorage.setItem("mindMateData", JSON.stringify(updatedData));
-    window.location.reload();
   };
 
   const handleEventDelete = (eventId: any) => {
