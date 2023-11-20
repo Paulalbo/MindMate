@@ -25,25 +25,27 @@ const CalenderDay: React.FC<CalenderDayProps> = ({ date, statusCheck }) => {
   const getReminderData = initialData.Reminders;
   const getEventsData = initialData.events;
   // Transform tasks into the desired format and filter out "Done" tasks
-  const taskData = getTaskData
-    .filter((task: { status: string }) => task.status !== "Done")
-    .map((task: { id: any; duedate: any; event: any }) => ({
+  const taskData = getTaskData.map(
+    (task: { status: any; id: any; duedate: any; event: any }) => ({
       id: task.id,
       eventDate: task.duedate,
       time: "23:00", // Adjust this as needed
       eventType: "task-event",
       title: task.event,
-    }));
+      eventStatus: task.status === "Done" ? false : true,
+    })
+  );
 
-  const reminderData = getReminderData
-    .filter((reminder: { status: boolean }) => reminder.status !== false)
-    .map((reminder: { id: any; date: any; title: any }) => ({
+  const reminderData = getReminderData.map(
+    (reminder: { status: any; id: any; date: any; title: any }) => ({
       id: reminder.id,
       eventDate: reminder.date.split("T")[0],
       time: reminder.date.split("T")[1],
       eventType: "reminder-event",
       title: reminder.title,
-    }));
+      eventStatus: reminder.status,
+    })
+  );
 
   const testData = [...taskData, ...reminderData, ...getEventsData];
   // Filter events based on the provided date

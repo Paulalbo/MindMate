@@ -36,7 +36,7 @@ const CalenderEvent: React.FC<CalenderEventProps> = ({ event, onDelete }) => {
 
   return (
     <div
-      className={`calender__event calender__event--${event.eventType}`}
+      className={`calender__event calender__event--${event.eventType} calender__event--${event.eventStatus}`}
       key={event.id}
     >
       <input type="time" value={inputValue} onChange={handleInputChange} />

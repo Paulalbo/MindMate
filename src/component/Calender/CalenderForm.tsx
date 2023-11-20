@@ -15,6 +15,7 @@ const CalenderAddNew = () => {
     id: String(Date.now()),
     title: "",
     time: "",
+    eventStatus: "",
   });
 
   const handleEditButtonClick = () => {
@@ -47,6 +48,7 @@ const CalenderAddNew = () => {
       id: String(Date.now()),
       title: "",
       time: "",
+      eventStatus: "active",
     });
 
     // Close the modal after adding the event.

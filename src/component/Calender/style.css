@@ -111,6 +111,12 @@
   background: #ff0000c9;
 }
 
+.calender__event--false {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  opacity: .4;
+}
+
 .calender__event textarea {
   border: none;
   font-weight: 700;
