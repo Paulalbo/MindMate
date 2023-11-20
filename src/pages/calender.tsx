@@ -16,7 +16,7 @@ const Calender = () => {
   const generateDateArray = (startOffset: number, endOffset: number) => {
     const dateArray = [];
     for (let i = startOffset; i <= endOffset; i++) {
-      const date = getMonday(new Date());
+      const date = getMonday(currentDate);
       date.setDate(date.getDate() + i);
       dateArray.push(date.toISOString().slice(0, 10)); // Format as "YYYY-MM-DD"
     }
