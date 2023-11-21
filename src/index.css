@@ -185,12 +185,12 @@ input:checked + .slider:before {
 .overview__wrapper {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: stretch;
   flex-wrap: wrap;
 }
 .overview__heading {
   background-color: #fafafa;
-  padding: 10px 15px;
+  padding: 25px 15px;
   margin: 10px;
   font-weight: 500;
   text-transform: uppercase;
@@ -214,8 +214,15 @@ input:checked + .slider:before {
 .overview .overview__item {
   display: flex;
 }
+.overview .overview__item + .overview__item {
+  border-top: 1px solid #000;
+}
 .overview .overview__item h4 {
   font-weight: 500;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-content: flex-end;
 }
 
 .overview .overview__item h4 span {

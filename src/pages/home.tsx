@@ -1,6 +1,4 @@
 import { ReactNode } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRightLong } from "@fortawesome/free-solid-svg-icons";
 
 const currentDate = new Date();
 const currentDateFormated = currentDate.toISOString().slice(0, 10);
@@ -35,8 +33,6 @@ const Home = () => {
                 <div key={getStoredRemind.id} className="overview__item">
                   <h4>
                     {getStoredRemind.title}{" "}
-                    <FontAwesomeIcon icon={faArrowRightLong} />
-                    &nbsp;
                     <span>{getStoredRemind.date.split("T")[1]}</span>
                   </h4>
                 </div>
@@ -59,10 +55,7 @@ const Home = () => {
               }) => (
                 <div key={getStoredEvent.id} className="overview__item">
                   <h4>
-                    {getStoredEvent.title}{" "}
-                    <FontAwesomeIcon icon={faArrowRightLong} />
-                    &nbsp;
-                    <span>{getStoredEvent.time}</span>
+                    {getStoredEvent.title} <span>{getStoredEvent.time}</span>
                   </h4>
                 </div>
               )
@@ -83,10 +76,7 @@ const Home = () => {
               }) => (
                 <div key={getStoredTask.id} className="overview__item">
                   <h4>
-                    {getStoredTask.event}{" "}
-                    <FontAwesomeIcon icon={faArrowRightLong} />
-                    &nbsp;
-                    <span>{getStoredTask.status}</span>
+                    {getStoredTask.event} <span>{getStoredTask.status}</span>
                   </h4>
                 </div>
               )
