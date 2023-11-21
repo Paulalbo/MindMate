@@ -6,12 +6,16 @@ import {
   faBookOpen,
   faClock,
   faCalendarDays,
-  faScrewdriverWrench,
+  faUser,
+  faPersonDigging,
 } from "@fortawesome/free-solid-svg-icons";
 
 function Navbar() {
   return (
     <nav className="navbar">
+      <Link className="navbar__profile" to="/settings">
+        <FontAwesomeIcon icon={faUser} />
+      </Link>
       <ul className="navbar__wrapper">
         <li className="navbar__item navbar__item--tasks">
           <FontAwesomeIcon icon={faListCheck} />
@@ -37,10 +41,10 @@ function Navbar() {
             Calender
           </Link>
         </li>
-        <li className="navbar__item navbar__item--settings">
-          <FontAwesomeIcon icon={faScrewdriverWrench} />
-          <Link className="navbar__link" to="/settings">
-            Settings
+        <li className="navbar__item navbar__item--in-progress">
+          <FontAwesomeIcon icon={faPersonDigging} />
+          <Link className="navbar__link" to="/in-progress">
+            in progress{" "}
           </Link>
         </li>
       </ul>
