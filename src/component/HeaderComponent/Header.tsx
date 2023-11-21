@@ -28,7 +28,9 @@ const Header = () => {
   }, []);
   return (
     <header>
-      <img src={reactLogo} className="logo react" alt="React logo" />
+      <a href="./">
+        <img src={reactLogo} className="logo react" alt="React logo" />
+      </a>
       <h2 className="title">outsorce your mind and rest</h2>
       {importedJsonData ? (
         <p>

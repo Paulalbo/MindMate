@@ -13,6 +13,7 @@ import Reminder from "./pages/Reminder";
 import Notes from "./pages/notes";
 import TaskPage from "./pages/task-page";
 import Settings from "./pages/settings";
+import Home from "./pages/home";
 
 function App() {
   return (
@@ -23,7 +24,7 @@ function App() {
         <div>
           <Navbar />
           <Routes>
-            <Route path="/" element={<Settings />} />
+            <Route path="/" element={<Home />} />
             <Route path="/task-page" element={<TaskPage />} />
             <Route path="/notes" element={<Notes />} />
             <Route path="/reminder" element={<Reminder />} />

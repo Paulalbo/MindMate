@@ -7,7 +7,7 @@ import {
   faClock,
   faCalendarDays,
   faUser,
-  faPersonDigging,
+  faLayerGroup,
 } from "@fortawesome/free-solid-svg-icons";
 
 function Navbar() {
@@ -41,10 +41,10 @@ function Navbar() {
             Calender
           </Link>
         </li>
-        <li className="navbar__item navbar__item--in-progress">
-          <FontAwesomeIcon icon={faPersonDigging} />
-          <Link className="navbar__link" to="/in-progress">
-            in progress{" "}
+        <li className="navbar__item navbar__item--overview">
+          <FontAwesomeIcon icon={faLayerGroup} />
+          <Link className="navbar__link" to="/">
+            Overview
           </Link>
         </li>
       </ul>
