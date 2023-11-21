@@ -17,6 +17,12 @@ function Navbar() {
         <FontAwesomeIcon icon={faUser} />
       </Link>
       <ul className="navbar__wrapper">
+        <li className="navbar__item navbar__item--overview">
+          <FontAwesomeIcon icon={faLayerGroup} />
+          <Link className="navbar__link" to="/">
+            Overview
+          </Link>
+        </li>
         <li className="navbar__item navbar__item--tasks">
           <FontAwesomeIcon icon={faListCheck} />
           <Link className="navbar__link" to="/task-page">
@@ -39,12 +45,6 @@ function Navbar() {
           <FontAwesomeIcon icon={faCalendarDays} />
           <Link className="navbar__link" to="/calender">
             Calender
-          </Link>
-        </li>
-        <li className="navbar__item navbar__item--overview">
-          <FontAwesomeIcon icon={faLayerGroup} />
-          <Link className="navbar__link" to="/">
-            Overview
           </Link>
         </li>
       </ul>
