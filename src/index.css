@@ -222,7 +222,7 @@ input:checked + .slider:before {
   display: flex;
   width: 100%;
   justify-content: space-between;
-  align-content: flex-end;
+  align-items: flex-start;
 }
 
 .overview .overview__item h4 span {
