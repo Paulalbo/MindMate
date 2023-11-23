@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Key } from "react";
 import CalenderDay from "../component/Calender/CalenderDay";
 import CalenderAddNew from "../component/Calender/CalenderForm";
+import React from "react";
 
 const Calender = () => {
   const currentDate = new Date();
@@ -33,11 +33,19 @@ const Calender = () => {
     }
   };
 
-  const renderWeek = (startOffset: number, endOffset: number) => (
+  const renderWeek = (
+    startOffset: number,
+    endOffset: number,
+    weekIndex: number
+  ) => (
     <div className="calender__week">
       {generateDateArray(startOffset, endOffset).map(
-        (date: string, index: Key | null | undefined) => (
-          <CalenderDay key={index} date={date} statusCheck={dayStatus(date)} />
+        (date: string, dayIndex) => (
+          <CalenderDay
+            key={`${weekIndex}-${dayIndex}`}
+            date={date}
+            statusCheck={dayStatus(date)}
+          />
         )
       )}
     </div>
@@ -50,11 +58,13 @@ const Calender = () => {
   };
 
   const renderDefaultView = (renderWeeks: number) => (
-    <div>
-      {Array.from({ length: renderWeeks }, (_, index) =>
-        renderWeek(index * 7 - 7, index * 7 - 1)
-      )}
-    </div>
+    <>
+      {Array.from({ length: renderWeeks }, (_, index) => (
+        <React.Fragment key={index}>
+          {renderWeek(index * 7 - 7, index * 7 - 1, index)}
+        </React.Fragment>
+      ))}
+    </>
   );
 
   return (

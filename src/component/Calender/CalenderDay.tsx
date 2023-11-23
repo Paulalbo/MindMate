@@ -23,7 +23,7 @@ const CalenderDay: React.FC<CalenderDayProps> = ({ date, statusCheck }) => {
 
   const getTaskData = initialData.tasks || [];
   const getReminderData = initialData.Reminders || [];
-  const getEventsData = initialData.events;
+  const getEventsData = initialData.events || [];
   // Transform tasks into the desired format and filter out "Done" tasks
   const taskData = getTaskData.map(
     (task: { status: any; id: any; duedate: any; event: any }) => ({
