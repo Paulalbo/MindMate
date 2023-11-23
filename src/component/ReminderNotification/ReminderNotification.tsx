@@ -69,19 +69,25 @@ const ReminderNotification = () => {
 
   return (
     <div
-      className={`notification notification--reminder ${
+      className={`notification__wrapper ${
         notificationVisible ? "visible" : ""
       }`}
     >
-      <button
-        className="notification__close"
-        onClick={() => closeNotification()}
+      <div
+        className={`notification notification--reminder ${
+          notificationVisible ? "visible" : ""
+        }`}
       >
-        <FontAwesomeIcon icon={faTimes} />
-      </button>
+        <button
+          className="notification__close"
+          onClick={() => closeNotification()}
+        >
+          <FontAwesomeIcon icon={faTimes} />
+        </button>
 
-      <div className="notification__content">
-        <h3 className="notification__title">{notificationMessage}</h3>
+        <div className="notification__content">
+          <h3 className="notification__title">{notificationMessage}</h3>
+        </div>
       </div>
     </div>
   );

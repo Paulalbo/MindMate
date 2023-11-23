@@ -13,9 +13,20 @@
           justify-content: center;
   -webkit-box-shadow: 1px 1px 10px -6px #000000;
           box-shadow: 1px 1px 10px -6px #000000;
-  z-index: 999;
+  z-index: 9999;
   -webkit-transition: 1s ease-in-out;
   transition: 1s ease-in-out;
+}
+
+.notification__wrapper.visible::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background: #00000027;
+  z-index: 9998;
 }
 
 .notification.visible {
