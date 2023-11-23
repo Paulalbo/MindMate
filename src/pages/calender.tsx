@@ -1,9 +1,9 @@
+import { useState } from "react";
 import { Key } from "react";
 import CalenderDay from "../component/Calender/CalenderDay";
 import CalenderAddNew from "../component/Calender/CalenderForm";
 
 const Calender = () => {
-  // just for testing --> const getTomorrow = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
   const currentDate = new Date();
   const currentDateFormated = currentDate.toISOString().slice(0, 10);
 
@@ -33,61 +33,38 @@ const Calender = () => {
     }
   };
 
-  // Generate date arrays for the last week, current week, and the next two weeks
-  const lastWeekDates = generateDateArray(-7, -1);
-  const currentWeekDates = generateDateArray(0, 6);
-  const nextWeekDates = generateDateArray(7, 13);
-  const inTwoWeekDates = generateDateArray(14, 20);
+  const renderWeek = (startOffset: number, endOffset: number) => (
+    <div className="calender__week">
+      {generateDateArray(startOffset, endOffset).map(
+        (date: string, index: Key | null | undefined) => (
+          <CalenderDay key={index} date={date} statusCheck={dayStatus(date)} />
+        )
+      )}
+    </div>
+  );
+
+  const [renderedWeeks, setRenderedWeeks] = useState(4);
+
+  const renderNextWeek = () => {
+    setRenderedWeeks((prevRenderedWeeks) => prevRenderedWeeks + 1);
+  };
+
+  const renderDefaultView = (renderWeeks: number) => (
+    <div>
+      {Array.from({ length: renderWeeks }, (_, index) =>
+        renderWeek(index * 7 - 7, index * 7 - 1)
+      )}
+    </div>
+  );
 
   return (
     <div className="calender">
       <CalenderAddNew />
       <div className="calender__wrapper">
-        {/* Last week */}
-        <div className="calender__week">
-          {lastWeekDates.map((date: string, index: Key | null | undefined) => (
-            <CalenderDay
-              key={index}
-              date={date}
-              statusCheck={dayStatus(date)}
-            />
-          ))}
-        </div>
-
-        {/* Current week */}
-        <div className="calender__week">
-          {currentWeekDates.map(
-            (date: string, index: Key | null | undefined) => (
-              <CalenderDay
-                key={index}
-                date={date}
-                statusCheck={dayStatus(date)}
-              />
-            )
-          )}
-        </div>
-
-        {/* Next week */}
-        <div className="calender__week">
-          {nextWeekDates.map((date: string, index: Key | null | undefined) => (
-            <CalenderDay
-              key={index}
-              date={date}
-              statusCheck={dayStatus(date)}
-            />
-          ))}
-        </div>
-
-        {/* In two weeks */}
-        <div className="calender__week">
-          {inTwoWeekDates.map((date: string, index: Key | null | undefined) => (
-            <CalenderDay
-              key={index}
-              date={date}
-              statusCheck={dayStatus(date)}
-            />
-          ))}
-        </div>
+        {renderDefaultView(renderedWeeks)}
+        <button className="button" onClick={renderNextWeek}>
+          Render upcoming week
+        </button>
       </div>
     </div>
   );
