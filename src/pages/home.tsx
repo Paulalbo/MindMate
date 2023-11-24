@@ -10,6 +10,21 @@ const getStoredEvents = storedData ? storedData.events : [];
 const getStoredReminds = storedData ? storedData.Reminders : [];
 
 const Home = () => {
+  const filteredReminders = getStoredReminds.filter(
+    (getStoredRemind: { date: string }) =>
+      getStoredRemind.date.split("T")[0] === currentDateFormated
+  );
+
+  const filteredEvents = getStoredEvents.filter(
+    (getStoredEvent: { eventDate: string }) =>
+      getStoredEvent.eventDate === currentDateFormated
+  );
+
+  const filteredTasks = getStoredTasks.filter(
+    (getStoredTask: { duedate: string }) =>
+      getStoredTask.duedate === currentDateFormated
+  );
+
   return (
     <div className="overview">
       <h2 className="overview__heading">
@@ -18,12 +33,8 @@ const Home = () => {
       <div className="overview__wrapper">
         <div className="overview__section">
           <h3>Reminder:</h3>
-          {getStoredReminds
-            .filter(
-              (getStoredRemind: { date: string }) =>
-                getStoredRemind.date.split("T")[0] === currentDateFormated
-            )
-            .map(
+          {filteredReminders.length > 0 ? (
+            filteredReminders.map(
               (getStoredRemind: {
                 [x: string]: ReactNode;
                 id: string;
@@ -37,17 +48,16 @@ const Home = () => {
                   </h4>
                 </div>
               )
-            )}
+            )
+          ) : (
+            <p>No Reminders today, nice, no stress, go catch some air</p>
+          )}
         </div>
 
         <div className="overview__section">
           <h3>Events:</h3>
-          {getStoredEvents
-            .filter(
-              (getStoredEvent: { eventDate: string }) =>
-                getStoredEvent.eventDate === currentDateFormated
-            )
-            .map(
+          {filteredEvents.length > 0 ? (
+            filteredEvents.map(
               (getStoredEvent: {
                 [x: string]: ReactNode;
                 id: string;
@@ -59,16 +69,16 @@ const Home = () => {
                   </h4>
                 </div>
               )
-            )}
+            )
+          ) : (
+            <p>No Events today, amazing, let's relax</p>
+          )}
         </div>
+
         <div className="overview__section">
           <h3>Tasks:</h3>
-          {getStoredTasks
-            .filter(
-              (getStoredTask: { duedate: string }) =>
-                getStoredTask.duedate === currentDateFormated
-            )
-            .map(
+          {filteredTasks.length > 0 ? (
+            filteredTasks.map(
               (getStoredTask: {
                 [x: string]: ReactNode;
                 id: string;
@@ -80,7 +90,10 @@ const Home = () => {
                   </h4>
                 </div>
               )
-            )}
+            )
+          ) : (
+            <p>No Tasks today, relax and take a nap</p>
+          )}
         </div>
       </div>
     </div>
