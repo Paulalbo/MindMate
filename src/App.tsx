@@ -33,6 +33,9 @@ function App() {
           </Routes>
         </div>
       </BrowserRouter>
+      <p>
+        developed by <strong>Paul Albrecht</strong>
+      </p>
     </>
   );
 }
